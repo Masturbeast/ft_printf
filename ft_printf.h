@@ -31,13 +31,13 @@
 /*
 
 - For S_CHAR: - with d or i, it's an signed char.
-			  - with u, o, x or X, it's an unsigned char.
+              - with u, o, x or X, it's an unsigned char.
 - For S_SHORT: - with d or i, it's a short int.
-			   - with u, o, x or X, it's an unsigned short int.
+               - with u, o, x or X, it's an unsigned short int.
 - For S_LONG: - with d or i, it's a long int.
-			  - with u, o, x or X, it's an unsigned long int.
+              - with u, o, x or X, it's an unsigned long int.
 - For S_LLONG: - with d or im it's a long long int.
-			   - with u, o, x or X, it's an unsigned long long int.
+               - with u, o, x or X, it's an unsigned long long int.
 
 			   Check plan.txt.
 */
