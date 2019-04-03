@@ -1,12 +1,27 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-int     ft_format_parsing(char *fmt)
+void    ft_opt_check(s_format *fmt)
 {
     int     i;
+}
 
-    while (fmt[i] != '\0')
-    {
-        
-    }
+void    ft_minwidth_check(s_format *fmt)
+{
+
+}
+
+void    ft_prec_check(s_format *fmt)
+{
+
+}
+
+void    ft_size_check(s_format *fmt)
+{
+
+}
+
+void    ft_conv_check(s_format *fmt)
+{
+    
 }

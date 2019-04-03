@@ -49,7 +49,7 @@ typedef struct  s_format
 	int		prec;
 	char	size;
 	char	conv;
-	char	buff[BUFF_SIZE];s
+	char	buff[BUFF_SIZE];
 }               t_format;
 /*
     flags (declared as variables) included in format struct:
