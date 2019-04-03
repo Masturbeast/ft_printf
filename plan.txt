@@ -1,0 +1,28 @@
+CONVERSIONS:
+
+                       {   c, s, p    }
+
+- c:    unsigned char           |   ///
+- s:    char *                  |   ///
+- p:    void *                  |   ///
+
+                    {   d, i, o, u, x, X:   }
+
+- d:    int                     |   "l" --> long and "h" --> short
+                                    "ll --> long long int and "hh" --> signed char
+- i:    int                     |   "l" --> long and "h" --> short
+                                    "ll --> long long int and "hh" --> signed char
+- u:    unsigned int            |   "l" --> unsigned long and "h" --> unsigned short
+                                    "ll" --> unsigned long long int and "hh" --> unsigned char
+- o:    unsigned int (octal)    |   "l" --> unsigned long and "h" --> unsigned short
+                                    "ll" --> unsigned long long int and "hh" --> unsigned char
+- x:    int (hexadecimal)       |   "l" --> unsigned long and "h" --> unsigned short
+                                    "ll" --> unsigned long long int and "hh" --> unsigned char
+- X:    int (cap hexadecimal)   |   "l" --> unsigned long and "h" --> unsigned short
+                                    "ll" --> unsigned long long int and "hh" --> unsigned char
+
+                            {   f   }   
+- f:    double                  |   "l" --> double (same as %f) and "L" --> long double
+
+                            {   %%     }
+- %%:   char *                  |   ///
