@@ -24,7 +24,7 @@
 # define S_SHORT (1 << 6)	/* size "h"   --> 0000 0000 0100 0000 */
 # define S_LONG (1 << 7)	/* size "l"   --> 0000 0000 1000 0000 */
 # define S_LLONG (1 << 8)	/* size "ll"  --> 0000 0001 0000 0000 */
-# define S_LDOUBLE (1 << 9) /* size "L"   --> 0000 0010 0000 0000 */
+# define S_LDOUBLE (1 << 9)	/* size "L"   --> 0000 0010 0000 0000 */
 
 					/* /!\ /!\ /!\ NOTES /!\ /!\ /!\ */
 
