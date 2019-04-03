@@ -1,5 +1,4 @@
 #ifndef FT_PRINTF_H
-
 # define FT_PRINTF_H
 # include <unistd.h>
 # include <stdio.h>
@@ -7,14 +6,16 @@
 # include <stdarg.h>
 # include "libft/libft.h"
 
+# define BUFF_SIZE 4096
+
 								/* FALGS IN BINARYWISE */
 
 								/* OPTIONS */
 
 # define O_HASH	(1 << 0)	/* option "#" --> 0000 0000 0000 0001 */
 # define O_ZERO	(1 << 1)	/* option "0" --> 0000 0000 0000 0010 */
-# define O_MINUS (1 << 2)	/* option "-" --> 0000 0000 0000 0001 */
-# define O_PLUS	(1 << 3)	/* option "+" --> 0000 0000 0000 0010 */ 
+# define O_MINUS (1 << 2)	/* option "-" --> 0000 0000 0000 0100 */
+# define O_PLUS	(1 << 3)	/* option "+" --> 0000 0000 0000 1000 */ 
 # define O_SPACE (1 << 4)	/* option " " --> 0000 0000 0001 0000 */
 
 								/* SIZE */
@@ -47,7 +48,8 @@ typedef struct  s_format
 	int		minwidth;
 	int		prec;
 	char	size;
-	char	conv;	
+	char	conv;
+	char	buff[BUFF_SIZE];
 }               t_format;
 /*
     flags (declared as variables) included in format struct:
