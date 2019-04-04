@@ -5,13 +5,12 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdarg.h>
-# include "libft/libft.h"
 
 # define BUFF_SIZE 4096
 
-								/* FALGS IN BINARYWISE */
+							/* FALGS IN BINARYWISE */
 
-								/* OPTIONS */
+							/* OPTIONS */
 
 # define O_HASH	(1 << 0)	/* option "#" --> 0000 0000 0000 0001 */
 # define O_ZERO	(1 << 1)	/* option "0" --> 0000 0000 0000 0010 */
@@ -19,7 +18,7 @@
 # define O_PLUS	(1 << 3)	/* option "+" --> 0000 0000 0000 1000 */ 
 # define O_SPACE (1 << 4)	/* option " " --> 0000 0000 0001 0000 */
 
-								/* SIZE MODIFIERS */
+							/* SIZE MODIFIERS */
 
 # define S_SHORT (1 << 5)	/* size "h"   --> 0000 0000 0010 0000 */
 # define S_CHAR (1 << 6)	/* size "hh"  --> 0000 0000 0100 0000 */
@@ -48,12 +47,11 @@
 typedef struct  s_printf
 {
 	int		opt;
-	int		minwidth;
+	int 	minwidth;
 	int		prec;
 	char	size;
 	char	conv;
 	char	*fmt;
-	char	buff[BUFF_SIZE];
 }               t_printf;
 /*
     flags (declared as variables) included in format struct:
