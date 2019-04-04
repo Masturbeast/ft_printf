@@ -1,10 +1,12 @@
 #include <stdio.h>
-#include "libft/libft.h"
+#include "ft_printf.h"
 
 int main()
 {
-     //int i=4;
-     int c=3;
-     printf("La partie entiere du nombre %c", c);
-     return 0;
+     t_printf pf;
+
+     pf.fmt = "-+ #0";
+     opt_check(&pf);
+     printf("%d", pf.opt);
+     return (0);
 }
