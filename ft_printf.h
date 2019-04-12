@@ -68,9 +68,11 @@ void	opt_check(t_printf *pf);
 void	width_check(t_printf *pf);
 void	prec_check(t_printf *pf);
 void	size_check(t_printf *pf);
-void	conv_check(t_printf *pf);
+int		conv_check(t_printf *pf);
+int		arg_parser(t_printf *pf);
 int		get_opt_size(char *str, char c);
 char	get_conv(char *str, char c);
 int		ft_atoi(const char *str);
+void	int_padding(t_printf *pf);
 
 #endif

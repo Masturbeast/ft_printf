@@ -4,7 +4,7 @@
 Function that check the options by getting 'format'.
 In this function, it also consider that:
 - O_MINUS cancel O_ZERO.
-- O_PLUS cancel O_SPQCE.
+- O_PLUS cancel O_SPACE.
 First specifier.
 */
 
@@ -18,11 +18,11 @@ void     opt_check(t_printf *pf)
 		pf->opt_size &= ~O_ZERO;
 	if ((pf->opt_size & O_PLUS) && (pf->opt_size & O_SPACE))
 		pf->opt_size &= ~O_SPACE;
-	printf("1 = %c\n", pf->conv);
 }
 
 /*
 Function that check the minimum width, specified by numbers (ASCII) or nothing.
+It can be the width for the option too.
 Specifier is right after the option ones.
 */
 
@@ -30,9 +30,8 @@ void	width_check(t_printf *pf)
 {
 	if (*pf->fmt >= 49 && *pf->fmt <= 57)
 		pf->width = ft_atoi(pf->fmt);
-	while (*pf->fmt >= 49 && *pf->fmt <= 57)
+	while (*pf->fmt >= 48 && *pf->fmt <= 57)
 		pf->fmt++;
-	printf("2 = %c\n", pf->conv);
 }
 
 /*
@@ -52,7 +51,6 @@ void	prec_check(t_printf *pf)
 		pf->prec = 0;
 	while (*pf->fmt >= 49 && *pf->fmt <= 57)
 		pf->fmt++;
-	printf("3 = %c\n", pf->conv);
 }
 
 /*
@@ -76,15 +74,14 @@ void	size_check(t_printf *pf)
 			pf->opt_size |= res;
 		}
 	}
-	printf("4 = %c\n", pf->conv);
 }
 
 /*
 Function that check the conversion type, it supposes to be a letter (char).
-Last specifier.
+Last specifier.s
 */
 
-void	conv_check(t_printf *pf)
+int		conv_check(t_printf *pf)
 {
 	char	*str;
 	int		i;
@@ -96,5 +93,19 @@ void	conv_check(t_printf *pf)
 	if (str[i] == *pf->fmt)
 	{
 		pf->conv = str[i];
+		return (1);
 	}
-}	
+	return (0);
+}
+
+int		arg_parser(t_printf *pf)
+{
+	opt_check(pf);
+    width_check(pf);
+    prec_check(pf);
+    size_check(pf);
+    conv_check(pf);
+	if(!pf->conv)
+		return (0);
+	return (1);	
+}
