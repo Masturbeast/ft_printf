@@ -73,6 +73,7 @@ void	size_check(t_printf *pf)
 			res <<= 5;
 			pf->opt_size |= res;
 		}
+		if (*pf->fmt++ != )
 	}
 }
 
