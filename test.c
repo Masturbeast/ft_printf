@@ -15,8 +15,7 @@ int main()
     if (pf.fmt[i] == c)
         pf.conv = pf.fmt[i];
     printf("%c\n", pf.conv);*/
-    pf.fmt = "-#5hc";
-    printf("%d\n", pf.prec);
+    pf.fmt = "-5hjc";
     opt_check(&pf);
     width_check(&pf);
     prec_check(&pf);

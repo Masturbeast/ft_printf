@@ -18,7 +18,6 @@ void     opt_check(t_printf *pf)
 		pf->opt_size &= ~O_ZERO;
 	if ((pf->opt_size & O_PLUS) && (pf->opt_size & O_SPACE))
 		pf->opt_size &= ~O_SPACE;
-	printf("1 = %c\n", pf->conv);
 }
 
 /*
@@ -32,7 +31,6 @@ void	width_check(t_printf *pf)
 		pf->width = ft_atoi(pf->fmt);
 	while (*pf->fmt >= 49 && *pf->fmt <= 57)
 		pf->fmt++;
-	printf("2 = %c\n", pf->conv);
 }
 
 /*
@@ -52,7 +50,6 @@ void	prec_check(t_printf *pf)
 		pf->prec = 0;
 	while (*pf->fmt >= 49 && *pf->fmt <= 57)
 		pf->fmt++;
-	printf("3 = %c\n", pf->conv);
 }
 
 /*
@@ -75,8 +72,9 @@ void	size_check(t_printf *pf)
 			res <<= 5;
 			pf->opt_size |= res;
 		}
+		if (*pf->fmt++ != )
 	}
-	printf("4 = %c\n", pf->conv);
+
 }
 
 /*
