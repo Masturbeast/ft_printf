@@ -73,7 +73,6 @@ void	size_check(t_printf *pf)
 			res <<= 5;
 			pf->opt_size |= res;
 		}
-		if (*pf->fmt++ != )
 	}
 }
 
@@ -89,11 +88,14 @@ int		conv_check(t_printf *pf)
 
 	str = "cspdiouxXf";
 	i = 0;
-	while (str[i] != *pf->fmt)
+	while (str[i] && str[i] != *pf->fmt)
+	{
 		i++;
+	}
 	if (str[i] == *pf->fmt)
 	{
 		pf->conv = str[i];
+		//printf("2: %c\n", pf->conv);
 		return (1);
 	}
 	return (0);
@@ -101,12 +103,16 @@ int		conv_check(t_printf *pf)
 
 int		arg_parser(t_printf *pf)
 {
+	char	*str;
+	int		i;
+
+	str = "cspdiiouxXf";
+	i = 0;
 	opt_check(pf);
     width_check(pf);
     prec_check(pf);
     size_check(pf);
-    conv_check(pf);
-	if(!pf->conv)
+	if (conv_check(pf) == 0 || !pf->conv)
 		return (0);
 	return (1);	
 }

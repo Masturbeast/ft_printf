@@ -5,7 +5,7 @@ void    int_padding(int n)
     ft_putnbr
 }
 
-void    int_options(t_printf *pf)
+void    int_options(t_printf *pf, int n)
 {
     if (pf->conv == 'd' || pf->conv == 'i')
     {

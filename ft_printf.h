@@ -5,6 +5,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdarg.h>
+# include <stdlib.h>
 
 # define BUFF_SIZE 4096
 
@@ -51,6 +52,7 @@ typedef struct  s_printf
 	int 	width;
 	int		prec;
 	char	conv;
+
 }               t_printf;
 /*
     flags (declared as variables) included in format struct:
@@ -63,7 +65,12 @@ typedef struct  s_printf
     (bitwise operation inchallah)
 */
 
-void	ft_printf(const char *fmt, ...);
+/* Main function */
+
+int		ft_printf(const char *fmt, ...);
+
+/* Parser funtcions */
+
 void	opt_check(t_printf *pf);
 void	width_check(t_printf *pf);
 void	prec_check(t_printf *pf);
@@ -72,7 +79,12 @@ int		conv_check(t_printf *pf);
 int		arg_parser(t_printf *pf);
 int		get_opt_size(char *str, char c);
 char	get_conv(char *str, char c);
+
+/*  Utils functins */
+
 int		ft_atoi(const char *str);
-void	int_padding(t_printf *pf);
+void	ft_putchar(char c);
+void	ft_putnbr(int n);
+size_t  ft_int_length(int n);
 
 #endif
