@@ -30,3 +30,7 @@ CONVERSIONS:
 
 0   1   1   0   1
 0   8   4   0   1
+
+intmax_t -> d & i
+uintmax_t -> ouxX
+

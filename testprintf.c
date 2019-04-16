@@ -3,7 +3,7 @@
 
 int main()
 {
-    printf("%jd", (intmin_t)-42);
-    //ft_printf("%s%c", "salut", 'a');
+    //printf("%ld", 42);
+    ft_printf("%hd", 42);
     return (0);
 }

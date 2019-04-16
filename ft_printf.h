@@ -52,6 +52,7 @@ typedef struct  s_printf
 	int 	width;
 	int		prec;
 	char	conv;
+	va_list args;
 
 }               t_printf;
 /*
@@ -80,11 +81,15 @@ int		arg_parser(t_printf *pf);
 int		get_opt_size(char *str, char c);
 char	get_conv(char *str, char c);
 
-/*  Utils functins */
+/*  Utils functions */
 
 int		ft_atoi(const char *str);
 void	ft_putchar(char c);
 void	ft_putnbr(int n);
 size_t  ft_int_length(int n);
+
+/* Cast functions */
+
+intmax_t	di_int_cast(t_printf *pf);
 
 #endif

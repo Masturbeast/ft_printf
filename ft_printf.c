@@ -2,15 +2,22 @@
 
 int     ft_printf(const char *fmt, ...)
 {
-    va_list(args);
+    t_printf pf; 
 
-    va_start(args, fmt);
-    
-    if (strcmp(fmt, "%s%c") == 0)
+    pf.fmt = (char *)fmt;
+
+    va_start(pf.args, fmt);
+    if (*pf.fmt == '%' && pf.fmt++)
     {
-       printf("%c\n", va_arg(args, int));
-       printf("%s\n", va_arg(args, char *));
+        if (arg_parser(&pf) == 1)
+        {
+            if (pf.conv)
+            {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                printf("%ld\n", di_int_cast(&pf));
+                //printf("%hhd\n", n);
+            }
+        }
     }
-    va_end(args);
+    va_end(pf.args);
     return(0);
 }

@@ -70,11 +70,13 @@ void	size_check(t_printf *pf)
 		pf->opt_size |= res;
 		if ((*pf->fmt == 104 && *pf->fmt++ == 104) || (*pf->fmt == 108 && *pf->fmt++ == 108))
 		{
+			pf->opt_size &= ~S_SHORT;
+			pf->opt_size &= ~S_LONG;
 			res <<= 5;
 			pf->opt_size |= res;
 		}
 	}
-}
+} 
 
 /*
 Function that check the conversion type, it supposes to be a letter (char).
@@ -114,5 +116,7 @@ int		arg_parser(t_printf *pf)
     size_check(pf);
 	if (conv_check(pf) == 0 || !pf->conv)
 		return (0);
+	printf("in parser, opt_size = %d\n", pf->opt_size);
+	printf("in parser, conv is : %c\n", pf->conv);
 	return (1);	
 }
