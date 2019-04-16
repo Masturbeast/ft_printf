@@ -4,6 +4,6 @@
 int main()
 {
     //printf("%ld", 42);
-    ft_printf("%hd", 42);
+    ft_printf("je teste %s salam %hd dsf d");
     return (0);
 }

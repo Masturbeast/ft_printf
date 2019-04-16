@@ -91,9 +91,7 @@ int		conv_check(t_printf *pf)
 	str = "cspdiouxXf";
 	i = 0;
 	while (str[i] && str[i] != *pf->fmt)
-	{
 		i++;
-	}
 	if (str[i] == *pf->fmt)
 	{
 		pf->conv = str[i];
@@ -116,7 +114,7 @@ int		arg_parser(t_printf *pf)
     size_check(pf);
 	if (conv_check(pf) == 0 || !pf->conv)
 		return (0);
-	printf("in parser, opt_size = %d\n", pf->opt_size);
-	printf("in parser, conv is : %c\n", pf->conv);
+	//printf("in parser, opt_size = %d\n", pf->opt_size);
+	//printf("in parser, conv is : %c\n", pf->conv);
 	return (1);	
 }
