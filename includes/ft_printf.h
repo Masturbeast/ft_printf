@@ -86,12 +86,13 @@ char	get_conv(char *str, char c);
 int		ft_atoi(const char *str);
 void	ft_putchar(char c);
 void	ft_putnbr(int n);
-size_t  ft_int_length(int n);
+size_t	ft_int_length(intmax_t n);
 void	ft_putstr(char const *s);
 
 /* Format options functions */
 
 void	minus_padding(int width);
+void    di_options_print(t_printf *pf);
 
 /* Cast functions */
 

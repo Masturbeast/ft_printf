@@ -1,19 +1,19 @@
 #include "ft_printf.h"
 
-size_t  ft_itoa_length(int n)
+size_t		ft_int_length(intmax_t n)
 {
 	size_t			len;
-	unsigned int	nb;
+	uintmax_t		nb;
 
 	len = 1;
 	if (n < 0)
 	{
 		len++;
-		nb = (unsigned int)(-n);
+		nb = (uintmax_t)(-n);
 	}
 	else
 		nb = (unsigned int)n;
 	if (nb >= 10)
-		len += ft_itoa_length((int)(nb / 10));
+		len += ft_int_length((int)(nb / 10));
 	return (len);
 }

@@ -8,6 +8,7 @@ int main()
     write(1, "salut2 ", 5);*/
     //ft_printf("Salut %ld", 42);
     //write(1, "format", 2);
-    printf("%5d", 42);
+    //printf("%5d", 42);
+   
     return (0);
 }

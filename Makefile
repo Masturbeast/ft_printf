@@ -32,7 +32,7 @@ CONVOBJ	= $(CONV:.c=.o)
 
 SRCS 	=		$(SRCSDIR)ft_printf.c			\
 				$(SRCSDIR)arg_parser.c			\
-				$(SRCSDIR)int_options.c				\
+				$(SRCSDIR)di_options_print.c	\
 
 OBJ	   = $(SRCS:.c=.o)
 
