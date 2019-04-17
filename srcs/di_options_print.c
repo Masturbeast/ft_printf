@@ -29,5 +29,4 @@ void    di_options_print(t_printf *pf)
         padding(twidth);
         ft_putnbr(print);
     }
-
 }
