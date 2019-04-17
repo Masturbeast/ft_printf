@@ -1,4 +1,4 @@
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 char     get_conv(char *str, char c)
 {
