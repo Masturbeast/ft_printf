@@ -12,8 +12,7 @@ int     ft_printf(const char *format, ...)
         {
             if (arg_parser(&pf) == 1)
             {   
-                ft_putnbr(di_int_cast(&pf));
-                minus_padding(3);
+                di_options_print(&pf);
             }
         }
         if (*pf.fmt == '\0')

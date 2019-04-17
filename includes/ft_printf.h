@@ -91,7 +91,7 @@ void	ft_putstr(char const *s);
 
 /* Format options functions */
 
-void	minus_padding(int width);
+void	padding(int width);
 void    di_options_print(t_printf *pf);
 
 /* Cast functions */

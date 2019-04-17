@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void    minus_padding(int width)
+void    padding(int width)
 {
     int     i;
 
@@ -14,12 +14,20 @@ void    minus_padding(int width)
 
 void    di_options_print(t_printf *pf)
 {
-    int t_width;
+    int         twidth;
+    uintmax_t   print;
 
-    t_width = 
+    print = di_int_cast(pf);
+    twidth = pf->width - ft_int_length(print);
     if (pf->opt_size & O_MINUS)
     {
-        ft_putnbr();
-        minus_padding();
+        ft_putnbr(print);
+        padding(twidth);
     }
+    if (pf->opt_size & O_SPACE)
+    {
+        padding(twidth);
+        ft_putnbr(print);
+    }
+
 }
