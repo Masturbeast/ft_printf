@@ -103,18 +103,12 @@ int		conv_check(t_printf *pf)
 
 int		arg_parser(t_printf *pf)
 {
-	char	*str;
-	int		i;
-
-	str = "cspdiiouxXf";
-	i = 0;
 	opt_check(pf);
     width_check(pf);
     prec_check(pf);
     size_check(pf);
 	if (conv_check(pf) == 0 || !pf->conv)
 		return (0);
-	//printf("In format, pf.fmt = %c\n", *pf->fmt);
-	//printf("in parser, conv is : %c\n", pf->conv);
+	//printf("is space and minus: %d\n", pf->opt_size);
 	return (1);	
 }

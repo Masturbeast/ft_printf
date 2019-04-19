@@ -14,14 +14,14 @@ int     ft_printf(const char *format, ...)
             {   
                 di_options_print(&pf);
             }
+            else
+                return (0);
         }
+        ft_putchar(*pf.fmt);
+        if (*pf.fmt != '\0')
+            pf.fmt++;
         if (*pf.fmt == '\0')
             return (0);
-        else
-        {
-            ft_putchar(*pf.fmt);
-            pf.fmt++;
-        }
     }
     va_end(pf.args);
     return(0);
