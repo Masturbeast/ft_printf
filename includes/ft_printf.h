@@ -93,6 +93,8 @@ void	ft_putstr(char const *s);
 
 void	padding(int width, char c);
 void    di_options_print(t_printf *pf);
+void    neg_int_print(t_printf *pf, int twidth, intmax_t print);
+void	pos_int_print(t_printf *pf, int twidth, uintmax_t print);
 
 /* Cast functions */
 
