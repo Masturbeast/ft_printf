@@ -2,8 +2,29 @@
 #include <stdio.h> 
 #include <math.h>
 
+int		ft_power(int x, int power)
+{
+	int i;
+	int a;
+
+	a = x;
+	if (power == 1)
+		return (x);
+	if (power < 0)
+		return (0);
+	if (power == 0)
+		return (1);
+	i = 2;
+	while (i <= power)
+	{
+		a = a * x;
+		i++;
+	}
+	return (a);
+}
+
 // reverses a string 'str' of length 'len' 
-void reverse(char *str, int len) 
+void	reverse(char *str, int len) 
 { 
     int i;
 	int j;
@@ -24,7 +45,7 @@ void reverse(char *str, int len)
  // Converts a given integer x to string str[].  d is the number 
  // of digits required in output. If d is more than the number 
  // of digits in x, then 0s are added at the beginning. 
-int inttostr(int x, char *str, int d) 
+int		inttostr(int x, char *str, int d) 
 { 
     int i;
 
@@ -45,18 +66,18 @@ int inttostr(int x, char *str, int d)
     return i; 
 } 
   
-
-void	ftoa(int afterpoint, float n, char *res) 
+void	ftoa(float n, char *res, int afterpoint) 
 { 
     // Extract integer part 
-    int ipart
-	
+    int ipart;
+	int i;
+
 	ipart = (int)n; 
     // Extract floating part 
     float fpart = n - (float)ipart; 
   
     // convert integer part to string 
-    int i = inttostr(ipart, res, 0); 
+    i = inttostr(ipart, res, 0); 
 	
 	if (afterpoint != 0) 
     { 
@@ -65,12 +86,12 @@ void	ftoa(int afterpoint, float n, char *res)
         // Get the value of fraction part upto given no. 
         // of points after dot. The third parameter is needed 
         // to handle cases like 233.007 
-        fpart = fpart * pow(10, afterpoint; 
+        fpart = fpart * ft_power(10, afterpoint); 
         inttostr((int)fpart, res + i + 1, afterpoint); 
     } 
 }
 
-int main() 
+int		main() 
 { 
     char res[50]; 
     float n = 233.007; 
