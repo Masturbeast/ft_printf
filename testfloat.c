@@ -51,19 +51,17 @@ int		inttostr(int x, char *str, int d)
 
 	i = 0;
     while (x) 
-    { 
+    {
         str[i++] = (x % 10) + '0'; 
-        x = x / 10; 
-    } 
-  
+        x = x / 10;	
+    }
     // If number of digits required is more, then 
-    // add 0s at the beginning 
+    // add 0s at the beginning
     while (i < d) 
-        str[i++] = '0'; 
-  
-    reverse(str, i); 
+        str[i++] = '0';
+    reverse(str, i + 1); 
     str[i] = '\0'; 
-    return i; 
+    return (i); 
 } 
   
 void	ftoa(float n, char *res, int afterpoint) 
@@ -71,13 +69,16 @@ void	ftoa(float n, char *res, int afterpoint)
     // Extract integer part 
     int ipart;
 	int i;
+	float fpart;
 
+	if (n < 0)
+		n = -n;
 	ipart = (int)n; 
-    // Extract floating part 
-    float fpart = n - (float)ipart; 
+    // Extract floating part
+    fpart = n - (float)ipart; 
   
-    // convert integer part to string 
-    i = inttostr(ipart, res, 0); 
+    // convert integer part to string
+    i = inttostr(ipart, res, 0);
 	
 	if (afterpoint != 0) 
     { 
@@ -94,9 +95,21 @@ void	ftoa(float n, char *res, int afterpoint)
 int		main() 
 { 
     char res[50]; 
-    float n = 233.007; 
-    ftoa(n, res, 3); 
+    float n = -233.007; 
+    ftoa(n, res, 3);
     printf("%s\n", res);
 	printf("%.3f\n", n); 
     return 0; 
 }
+
+void	f_precision_print(t_printf *pf)
+{
+	
+}
+
+
+
+
+
+/* NOTE: int afterpoint => pf->precision 
+afterpoint is the precision in printf */ 
