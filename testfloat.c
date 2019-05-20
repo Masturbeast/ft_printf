@@ -43,6 +43,8 @@ void	fround(char *str)
 				i--;
 			}
 		}
+		else
+			str[i - 1] += 1;
     }
     i++;
 	if (str[i - 1] == '.')
@@ -90,7 +92,6 @@ int		inttostr(int x, char *str, int d)
         x = x / 10;	
     }
     // If number of digits required is more, then 
-    // add 0s at the beginning
     while (i < d) 
         str[i++] = (x % 10) + '0';
     reverse(str, i); 
@@ -104,17 +105,20 @@ void	ft_ftoa(float n, char *res, int afterpoint)
     int ipart;
 	int i;
 	float fpart;
+    float tmp;
 
-	ipart = (int)n;
-    // Extract floating part
-    fpart = n - (float)ipart;
-    // convert integer part to string
+    tmp = n;
     if (n < 0)
     {
         n *= (-1);
         res[0] = '-';
-        i = inttostr(ipart, res + 1, 0) + 1;
     }
+	ipart = (int)n;
+    // Extract floating part
+    fpart = n - (float)ipart;
+    // convert integer part to string
+    if (tmp < 0)
+        i = inttostr(ipart, res + 1, 0) + 1;
     else
         i = inttostr(ipart, res, 0);
 	if (afterpoint != 0) 
@@ -132,13 +136,14 @@ void	ft_ftoa(float n, char *res, int afterpoint)
 int		main() 
 {
     char res[20]; 
-    float n = 3999.9999;
-    char *str = "3999.9999";
+    float n = -42.561468;
+    char *str = "-42.56145";
     printf("%s\n", str);
-    ft_ftoa(n, res, 1);
-    fround(res);
+    ft_ftoa(n, res, 6);
+    //fround(res);
+    //res[9] = '\0';
     printf("%s\n", res);
-	printf("%.1f\n", n); 
+	printf("%f\n", n); 
     return (0); 
 }
 

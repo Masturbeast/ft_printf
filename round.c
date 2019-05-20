@@ -3,7 +3,7 @@
 void	fround(char *str)
 {
     int i;
-	
+
 	i = 0;
 	if (str[0] == '-')
 		i++;
@@ -20,6 +20,8 @@ void	fround(char *str)
 				i--;
 			}
 		}
+		else
+			str[i - 1] += 1;
     }
     i++;
 	if (str[i - 1] == '.')
