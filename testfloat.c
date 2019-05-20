@@ -22,6 +22,41 @@ int		ft_power(int x, int power)
 	return (a);
 }
 
+//round function
+void	fround(char *str)
+{
+    int i;
+
+	i = 0;
+	if (str[0] == '-')
+		i++;
+	while (str[i] != '\0')
+		i++;
+	i--;
+	if (str[i] >= '5')
+	{
+		if (str[i - 1] == '9')
+		{	
+			while (str[i - 1] == '9')
+			{
+				str[i - 1] = '0';
+				i--;
+			}
+		}
+    }
+    i++;
+	if (str[i - 1] == '.')
+    {
+        if (str[i - 2] == '9')
+		{	
+			while (str[i - 2] == '9')
+			{
+				str[i - 2] = '0';
+				i--;
+			}
+		}
+    }
+}
 // reverses a string 'str' of length 'len' 
 void	reverse(char *str, int len) 
 { 
@@ -63,23 +98,25 @@ int		inttostr(int x, char *str, int d)
     return (i); 
 } 
   
-void	ftoa(float n, char *res, int afterpoint) 
+void	ft_ftoa(float n, char *res, int afterpoint) 
 { 
     // Extract integer part 
     int ipart;
 	int i;
 	float fpart;
 
-    if (n < 0)
-    {
-        n = n * (-1);
-        res[0] = '-';
-    }
-	ipart = (int)n; 
+	ipart = (int)n;
     // Extract floating part
     fpart = n - (float)ipart;
     // convert integer part to string
-    i = inttostr(ipart, res + 1, 0) + 1;
+    if (n < 0)
+    {
+        n *= (-1);
+        res[0] = '-';
+        i = inttostr(ipart, res + 1, 0) + 1;
+    }
+    else
+        i = inttostr(ipart, res, 0);
 	if (afterpoint != 0) 
     { 
         res[i] = '.';  // add dot 
@@ -87,29 +124,23 @@ void	ftoa(float n, char *res, int afterpoint)
         // Get the value of fraction part upto given no. 
         // of points after dot. The third parameter is needed 
         // to handle cases like 233.007 
-        fpart = fpart * ft_power(10, afterpoint); 
+        fpart = fpart * ft_power(10, afterpoint + 1); 
         inttostr((int)fpart, res + i + 1, afterpoint); 
     } 
 }
 
 int		main() 
 {
-    char res[50]; 
-    float n = -233.007; 
-    ftoa(n, res, 10);
+    char res[20]; 
+    float n = 3999.9999;
+    char *str = "3999.9999";
+    printf("%s\n", str);
+    ft_ftoa(n, res, 1);
+    fround(res);
     printf("%s\n", res);
-	printf("%.10f\n", n); 
+	printf("%.1f\n", n); 
     return (0); 
 }
-
-void	f_precision_print(t_printf *pf)
-{
-	
-}
-
-
-
-
 
 /* NOTE: int afterpoint => pf->precision 
 afterpoint is the precision in printf */ 
