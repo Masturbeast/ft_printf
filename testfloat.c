@@ -1,6 +1,5 @@
 #include "includes/ft_printf.h"
 #include <stdio.h> 
-#include <math.h>
 
 int		ft_power(int x, int power)
 {
@@ -32,7 +31,7 @@ void	reverse(char *str, int len)
 
 	i = 0;
 	j = len - 1;
-    while (i<j) 
+    while (i < j) 
     { 
         temp = str[i]; 
         str[i] = str[j]; 
@@ -58,8 +57,8 @@ int		inttostr(int x, char *str, int d)
     // If number of digits required is more, then 
     // add 0s at the beginning
     while (i < d) 
-        str[i++] = '0';
-    reverse(str, i + 1); 
+        str[i++] = (x % 10) + '0';
+    reverse(str, i); 
     str[i] = '\0'; 
     return (i); 
 } 
@@ -71,15 +70,16 @@ void	ftoa(float n, char *res, int afterpoint)
 	int i;
 	float fpart;
 
-	if (n < 0)
-		n = -n;
+    if (n < 0)
+    {
+        n = n * (-1);
+        res[0] = '-';
+    }
 	ipart = (int)n; 
     // Extract floating part
-    fpart = n - (float)ipart; 
-  
+    fpart = n - (float)ipart;
     // convert integer part to string
-    i = inttostr(ipart, res, 0);
-	
+    i = inttostr(ipart, res + 1, 0) + 1;
 	if (afterpoint != 0) 
     { 
         res[i] = '.';  // add dot 
@@ -93,13 +93,13 @@ void	ftoa(float n, char *res, int afterpoint)
 }
 
 int		main() 
-{ 
+{
     char res[50]; 
     float n = -233.007; 
-    ftoa(n, res, 3);
+    ftoa(n, res, 10);
     printf("%s\n", res);
-	printf("%.3f\n", n); 
-    return 0; 
+	printf("%.10f\n", n); 
+    return (0); 
 }
 
 void	f_precision_print(t_printf *pf)
