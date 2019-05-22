@@ -146,8 +146,10 @@ char	*fround(int prec, long int x, long double y)
 	int			i;
 	char 		*intcat;
 	long int	power;
+	int			len;
 
 	power = ft_power(10, prec + 1);
+	printf("power is: %ld\n", power);
 	y = y * power;
 	t = int_cat(x, y);
 	i = ft_inttostr(t, intcat, 0);
@@ -157,9 +159,23 @@ char	*fround(int prec, long int x, long double y)
 	if (intcat[i] >= '5')
 		t = t + (10 - ft_atoi(&intcat[i]));
 	printf("t is: %ld\n", t);
-	i = ft_inttostr(t, intcat, 0);
-	ft_strclr(intcat);
-	printf("i is %d\n", i);
+	len = ft_int_length(x) + prec;
+	printf("len is: %zd\n", len);
+	i = 0;
+	if (ft_int_length(t) == len)
+	{
+		printf("len is: %zd\n", ft_int_length(t));
+		while (i <= ft_int_length(x))
+			i++;
+		intcat[len] = intcat[i];
+		intcat[i] = '.';
+		intcat[i + 1] = '\0'; 
+		return(intcat);
+	}
+	i = ft_inttostr(x, intcat, 0);
+	intcat[i] = '.';
+	t = t - (x * power);
+	ft_inttostr(t, intcat + i + 1, prec);
 	return (intcat);
 }
 

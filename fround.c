@@ -1,38 +1,26 @@
 #include <stdio.h>
 
-void	fround(char *str)
+char	*fround(long int x, long double y, int prec)
 {
-    int i;
+	long int 	t;
+	int			i;
+	char 		*intcat;
+	int			len;
+	long int	power;
 
-	i = 0;
-	if (str[0] == '-')
-		i++;
-	while (str[i] != '\0')
+	power = ft_power(10, prec + 1);
+	y = y * power;
+	t = int_cat(x, y);
+	i = ft_inttostr(t, intcat, 0);
+	while (intcat[i] != '\0')
 		i++;
 	i--;
-	if (str[i] >= '5')
-	{
-		if (str[i - 1] == '9')
-		{	
-			while (str[i - 1] == '9')
-			{
-				str[i - 1] = '0';
-				i--;
-			}
-		}
-		else
-			str[i - 1] += 1;
-    }
-    i++;
-	if (str[i - 1] == '.')
-    {
-        if (str[i - 2] == '9')
-		{	
-			while (str[i - 2] == '9')
-			{
-				str[i - 2] = '0';
-				i--;
-			}
-		}
-    }
+	if (intcat[i] >= '5')
+		t = t + (10 - ft_atoi(&intcat[i]));
+	ft_strclr(intcat);
+	i = ft_inttostr(x, intcat, 0);
+	intcat[i] = '.';
+	t = t - (x * power);
+	ft_inttostr(t, intcat + i + 1, prec);
+	return (intcat);
 }
