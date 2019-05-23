@@ -1,22 +1,20 @@
 #include <stdio.h> 
 #include <stdint.h>
 
-size_t		ft_int_length(intmax_t n)
+size_t	ft_int_length(long int n)
 {
-	size_t			len;
-	uintmax_t		nb;
+	size_t i;
 
-	len = 1;
+	i = 1;
+
 	if (n < 0)
 	{
-		len++;
-		nb = (uintmax_t)(-n);
+		n = -n;
+		i++;
 	}
-	else
-		nb = (unsigned int)n;
-	if (nb >= 10)
-		len += ft_int_length((int)(nb / 10));
-	return (len);
+	if (n / 10)
+		i += ft_int_length(n / 10);
+	return (i);
 }
 
 size_t		ft_strlen(const char *str)
@@ -125,8 +123,8 @@ void	ft_str_reverse(char *str, int len)
 
 int		ft_inttostr(long int x, char *str, int prec) 
 { 
-    int i;
-
+    int		i;
+	
 	i = 0;
     while (x) 
     {
@@ -136,20 +134,26 @@ int		ft_inttostr(long int x, char *str, int prec)
     while (i < prec) 
         str[i++] = (x % 10) + '0';
     ft_str_reverse(str, i); 
-    str[i] = '\0'; 
+    str[i] = '\0';
     return (i); 
+}
+
+int		ft_is_zero_neg(long double n)
+{
+	if (1 / n > 0)
+		return(0);
+	return (1);
 }
 
 char	*fround(int prec, long int x, long double y)
 {
-	long int 	t;
-	int			i;
-	char 		*intcat;
-	long int	power;
-	int			len;
+	long int 		t;
+	int				i;
+	long int		power;
+	size_t			len;
+	char			*intcat
 
 	power = ft_power(10, prec + 1);
-	printf("power is: %ld\n", power);
 	y = y * power;
 	t = int_cat(x, y);
 	i = ft_inttostr(t, intcat, 0);
@@ -158,24 +162,17 @@ char	*fround(int prec, long int x, long double y)
 	i--;
 	if (intcat[i] >= '5')
 		t = t + (10 - ft_atoi(&intcat[i]));
-	printf("t is: %ld\n", t);
-	len = ft_int_length(x) + prec;
-	printf("len is: %zd\n", len);
-	i = 0;
-	if (ft_int_length(t) == len)
-	{
-		printf("len is: %zd\n", ft_int_length(t));
-		while (i <= ft_int_length(x))
-			i++;
-		intcat[len] = intcat[i];
-		intcat[i] = '.';
-		intcat[i + 1] = '\0'; 
-		return(intcat);
-	}
-	i = ft_inttostr(x, intcat, 0);
+	len = ft_int_length(x) + prec + 1;
+	if (ft_int_length(t) > len)
+		x += 1;
+	ft_strclr(intcat);
+	if (intcat[0] == '-')
+		i = ft_inttostr(x, intcat, 0) + 1;
+	else
+		i = ft_inttostr(x, intcat, 0);
 	intcat[i] = '.';
 	t = t - (x * power);
-	ft_inttostr(t, intcat + i + 1, prec);
+	ft_inttostr(t, intcat + i + 1, prec + 1);
 	return (intcat);
 }
 
@@ -184,38 +181,30 @@ void	ft_ftoa(int prec, long double n, char *res)
     long int ipart;
 	int i;
 	long double fpart;
-    long double tmp;
+	long double tmp;
+	char 		*str;
 
-    tmp = n;
-    if (n < 0 && n != 0)
-    {
-        n *= (-1);
-        res[0] = '-';
-    }
-    else if (n == 0)
-        res[0] = '0';
-    else
-	    ipart = (long int)n;
-    if (tmp < 0 || n == 0)
-        i = ft_inttostr(ipart, res + 1, 0) + 1;
-    else
-        i = ft_inttostr(ipart, res, 0);
+	tmp = n;	
+	if (n < 0)
+	{
+		n *= (-1);
+		res[0] = '-';
+	}	
+	ipart = (long int)n;
+	printf("ipart is %ld\n", ipart);
     fpart = n - ipart;
-	res = fround(prec, ipart, fpart);
+	fround(prec, ipart, fpart);
 }
 
 int		main() 
 {
     char res[50];
-    long double n = 999.9999999;
-    char *str = "float nbr is: 999.9999999";
+    long double n = -5.5;
+    char *str = "float nbr is: -5.5";
     
     printf("%s\n", str);
-    ft_ftoa(6, n, res);
-	printf("      printf: %.6Lf\n", n); 
+    ft_ftoa(4, n, res);
+	printf("      printf: %.4Lf\n", n); 
 	printf("   my printf: %s\n", res);
     return (0); 
 }
-
-/* NOTE: int afterpoint => pf->precision 
-afterpoint is the precision in printf */ 
