@@ -7,9 +7,9 @@
 # include <stdarg.h>
 # include <stdlib.h>
 
-# define BUFF_SIZE 4096
+# define BUFF_SIZE 100
 
-							/* FALGS IN BINARYWISE */
+							/* FLAGS IN BINARYWISE */
 
 							/* OPTIONS */
 
@@ -83,11 +83,24 @@ char	get_conv(char *str, char c);
 
 /*  Utils functions */
 
-int		ft_atoi(const char *str);
-void	ft_putchar(char c);
-void	ft_putnbr(intmax_t n);
-size_t	ft_int_length(intmax_t n);
-void	ft_putstr(char const *s);
+size_t			ft_int_length(long long int n);
+size_t			ft_strlen(const char *str);
+long long int	int_cat(long long int x, long long int y);
+long long int	ft_power(long long int x, long long int power);
+void			ft_str_reverse(char *str, int len);
+int				ft_inttostr(long long int x, char *str, int prec);
+char			*fround(long long int x, long double y, int prec);
+void			*ft_memset(void *s, int c, size_t n);
+void			ft_bzero(void *s, size_t n);
+int				ft_atoi(const char *str);
+void			ft_putchar(char c);
+int				ft_atoi(const char *str);
+void	ft_bzero(void *s, size_t n);
+char			*ft_itoa(int n);
+void	*ft_memset(void *s, int c, size_t n);
+void	ft_strclr(char *s);
+void	ft_putnbr(int n);
+
 
 /* Format options functions */
 
@@ -95,6 +108,9 @@ void	padding(int width, char c);
 void    di_options_print(t_printf *pf);
 void    neg_int_print(t_printf *pf, int twidth, intmax_t print);
 void	pos_int_print(t_printf *pf, int twidth, uintmax_t print);
+void	ft_ftoa(int prec, long double n, char *res);
+char	*neg_fround(int prec, long long int x, long double y, char *intcat);
+char	*pos_fround(int prec, long long int x, long double y, char *intcat);
 
 /* Cast functions */
 

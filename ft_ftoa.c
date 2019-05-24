@@ -1,177 +1,47 @@
-#include <stdio.h> 
-#include <stdint.h>
+#include "includes/ft_printf.h"
 
-size_t	ft_int_length(long int n)
+char	*neg_fround(int prec, long long int x, long double y, char *intcat)
 {
-	size_t i;
-
-	i = 1;
-
-	if (n < 0)
-	{
-		n = -n;
-		i++;
-	}
-	if (n / 10)
-		i += ft_int_length(n / 10);
-	return (i);
-}
-
-size_t		ft_strlen(const char *str)
-{
-	int a;
-
-	a = 0;
-	while (str[a] != '\0')
-		a++;
-	return (a);
-}
-
-void	*ft_memset(void *s, int c, size_t n)
-{
-	char *t;
-
-	t = s;
-	while (n--)
-		*t++ = c;
-	return (s);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	ft_memset(s, 0, n);
-}
-
-void	ft_strclr(char *s)
-{
-	if (s)
-		ft_bzero(s, ft_strlen(s));
-}
-
-long int	int_cat(long int x, long int y) 
-{
-    unsigned long int power; 
-	
-	power = 10;
-    while(y >= power)
-    	power *= 10;
-    return (x * power + y);        
-}
-
-long int		ft_power(long int x, long int power)
-{
-	long int i;
-	long int a;
-
-	a = x;
-	if (power == 1)
-		return (x);
-	/*if (power < 0)
-		return (0);*/
-	if (power == 0)
-		return (1);
-	i = 2;
-	while (i <= power)
-	{
-		a = a * x;
-		i++;
-	}
-
-	return (a);
-}
-
-int		ft_atoi(const char *str)
-{
-	int i;
-	int a;
-	int r;
-
-	i = 0;
-	a = 1;
-	r = 0;
-	while (str[i] == 32 || (str[i] >= 8 && str[i] <= 13))
-		i++;
-	if (str[i] == 45)
-		a = -1;
-	if (str[i] == 43 || str[i] == 45)
-		i++;
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		r = r * 10 + (int)str[i] - 48;
-		i++;
-	}
-	return (a * r);
-}
-
-void	ft_str_reverse(char *str, int len) 
-{ 
-    int i;
-	int j;
-	int temp;
-
-	i = 0;
-	j = len - 1;
-    while (i < j) 
-    { 
-        temp = str[i]; 
-        str[i] = str[j]; 
-        str[j] = temp; 
-        i++; 
-		j--; 
-    } 
-}
-
-int		ft_inttostr(long int x, char *str, int prec) 
-{ 
-    int		i;
-	
-	i = 0;
-    while (x) 
-    {
-        str[i++] = (x % 10) + '0'; 
-        x = x / 10;	
-    }
-    while (i < prec) 
-        str[i++] = (x % 10) + '0';
-    ft_str_reverse(str, i); 
-    str[i] = '\0';
-    return (i); 
-}
-
-int		ft_is_zero_neg(long double n)
-{
-	if (1 / n > 0)
-		return(0);
-	return (1);
-}
-
-char	*fround(int prec, long int x, long double y)
-{
-	long int 		t;
+	long long int 		t;
 	int				i;
-	long int		power;
-	size_t			len;
-	char			*intcat
+	long long int		power;
 
 	power = ft_power(10, prec + 1);
 	y = y * power;
 	t = int_cat(x, y);
-	i = ft_inttostr(t, intcat, 0);
-	while (intcat[i] != '\0')
-		i++;
-	i--;
+	i = ft_inttostr(t, intcat, 0) - 1;
+	if (intcat[i] >= '5')
+		t -= (10 - ft_atoi(&intcat[i]));
+	if (ft_int_length(t) > (ft_int_length(x) + prec + 1))
+			x -= 1;
+	ft_strclr(intcat);
+	i = ft_inttostr(x, intcat, 0);
+	intcat[i] = '.';
+	t -= (x * power);
+	if (t < 0)
+		t *= (-1);
+	ft_inttostr(t, intcat + i + 1, prec + 1);
+	return (intcat);
+}
+
+char	*pos_fround(int prec, long long int x, long double y, char *intcat)
+{
+	long long int 		t;
+	int				i;
+	long long int		power;
+
+	power = ft_power(10, prec + 1);
+	y = y * power;
+	t = int_cat(x, y);
+	i = ft_inttostr(t, intcat, 0) - 1;
 	if (intcat[i] >= '5')
 		t = t + (10 - ft_atoi(&intcat[i]));
-	len = ft_int_length(x) + prec + 1;
-	if (ft_int_length(t) > len)
+	if (ft_int_length(t) > (ft_int_length(x) + prec + 1))
 		x += 1;
 	ft_strclr(intcat);
-	if (intcat[0] == '-')
-		i = ft_inttostr(x, intcat, 0) + 1;
-	else
-		i = ft_inttostr(x, intcat, 0);
+	i = ft_inttostr(x, intcat, 0);
 	intcat[i] = '.';
-	t = t - (x * power);
+	t -= (x * power);
 	ft_inttostr(t, intcat + i + 1, prec + 1);
 	return (intcat);
 }
@@ -181,30 +51,27 @@ void	ft_ftoa(int prec, long double n, char *res)
     long int ipart;
 	int i;
 	long double fpart;
-	long double tmp;
-	char 		*str;
-
-	tmp = n;	
-	if (n < 0)
-	{
-		n *= (-1);
-		res[0] = '-';
-	}	
-	ipart = (long int)n;
-	printf("ipart is %ld\n", ipart);
+	
+	i = 0;
+	ipart = (long long int)n;
     fpart = n - ipart;
-	fround(prec, ipart, fpart);
+	if (fpart < 0)
+		fpart *= (-1);
+	if (n < 0)
+		res = neg_fround(prec, ipart, fpart, res);
+	else if (n > 0)
+		res = pos_fround(prec, ipart, fpart, res);
 }
 
 int		main() 
 {
     char res[50];
-    long double n = -5.5;
-    char *str = "float nbr is: -5.5";
+    long double n = 99999.999999999;
+    char *str = "float nbr is: 99999.99999999";
     
     printf("%s\n", str);
-    ft_ftoa(4, n, res);
-	printf("      printf: %.4Lf\n", n); 
+    ft_ftoa(3, n, res);
+	printf("      printf: %.3Lf\n", n); 
 	printf("   my printf: %s\n", res);
     return (0); 
 }
