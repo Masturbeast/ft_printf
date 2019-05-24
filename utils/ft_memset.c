@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atep <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 15:44:20 by atep              #+#    #+#             */
-/*   Updated: 2018/11/28 16:48:32 by atep             ###   ########.fr       */
+/*   Created: 2018/11/08 14:54:33 by atep              #+#    #+#             */
+/*   Updated: 2018/11/28 17:14:51 by atep             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr(int n)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	long int a;
+	char *t;
 
-	a = n;
-	if (a < 0)
-	{
-		a = -a;
-		ft_putchar('-');
-	}
-	if (a > 9)
-		ft_putnbr(a / 10);
-	ft_putchar(a % 10 + 48);
+	t = s;
+	while (n--)
+		*t++ = c;
+	return (s);
 }
