@@ -13,28 +13,36 @@ CONVDIR = conv/
 
 INCDIR = includes/
 
+LIBFTDIR = includes/libft/
+
 # Files && Objs
 
-UTILS	=		$(UTILSDIR)ft_atoi.c			\
-				$(UTILSDIR)ft_int_lenght.c		\
-				$(UTILSDIR)ft_putchar.c			\
-				$(UTILSDIR)ft_putnbr.c			\
+UTILS	=		$(UTILSDIR)ft_int_lenght.c		\
 				$(UTILSDIR)get_conv.c			\
 				$(UTILSDIR)get_opt_size.c		\
-				$(UTILSDIR)ft_putstr.c			\
+				$(UTILSDIR)int_cat.c			\
+				$(UTILSDIR)ft_power.c			\
+				$(UTILSDIR)ft_str_reverse.c		\
+				$(UTILSDIR)ft_inttostr.c		\
+				$(UTILSDIR)ft_atoi.c			\
+				$(UTILSDIR)ft_memset.c			\
+				$(UTILSDIR)ft_putchar.c			\
+				$(UTILSDIR)ft_putnbr.c			\
+				$(UTILSDIR)ft_bzero.c			\
+				$(UTILSDIR)ft_strlen.c			\
+				$(UTILSDIR)ft_strclr.c			\
 
+UTIOBJ		= 	$(UTILS:.c=.o)
 
-UTIOBJ	= $(UTILS:.c=.o)
+CONV		=	$(CONVDIR)int_size_mod.c		\
 
-CONV	=		$(CONVDIR)sint_size_mod.c		\
+CONVOBJ		=	$(CONV:.c=.o)
 
-CONVOBJ	= $(CONV:.c=.o)
-
-SRCS 	=		$(SRCSDIR)ft_printf.c			\
+SRCS 		=	$(SRCSDIR)ft_printf.c			\
 				$(SRCSDIR)arg_parser.c			\
 				$(SRCSDIR)di_options_print.c	\
 
-OBJ	   = $(SRCS:.c=.o)
+SRCSOBJ		=	$(SRCS:.c=.o)
 
 # **************************************************************************** #
 
@@ -72,14 +80,14 @@ re				: 	fclean all
 
 #
 #$(info $(OBJ) $(UTIOBJ) $(CONVOBJ))
-$(NAME)			:	 $(OBJ) $(UTIOBJ) $(CONVOBJ)
+$(NAME)			:	 $(SRCSOBJ) $(UTIOBJ) $(CONVOBJ)
 					@echo "-------------------------------------------------------------"
 					@echo "|                  Debut de la compilation                  |"
 					@echo "|                            42                             |"
 					@echo "|                         FT_PRINTF                         |"
 					@echo "|                       compilation :                       |"
 					@echo "|                                                           |"
-					@ar rc $(NAME) $(OBJ) $(UTIOBJ) $(CONVOBJ)
+					@ar rc $(NAME) $(SRCSOBJ) $(UTIOBJ) $(CONVOBJ)
 					@ranlib $(NAME)
 					@echo "|                   make $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR)                   |"
 					@echo "-------------------------------------------------------------"
@@ -87,7 +95,7 @@ $(NAME)			:	 $(OBJ) $(UTIOBJ) $(CONVOBJ)
 
 clean			:
 					@echo "-------------------------------------------------------------"
-					@rm -rf $(OBJ) $(UTIOBJ) $(CONVOBJ)
+					@rm -rf $(SRCSOBJ) $(UTIOBJ) $(CONVOBJ)
 					@echo "|                    Removes all .o$(LOG_GREEN) ✓ $(LOG_NOCOLOR) !                    |"
 					@echo "-------------------------------------------------------------"
 
