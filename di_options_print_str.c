@@ -6,8 +6,8 @@ void    padding(t_printf *pf, int width, char c)
 {
 	while (pf->i < width)
 	{
-		*pf->str[pf->i] = c;
-		i++;
+		pf->str[pf->i] = c;
+		pf->i++;
 	}
 }
 
@@ -30,46 +30,47 @@ void    neg_int_print(t_printf *pf, int twidth, intmax_t print)
 	pf->i = 0;
 	if ((pf->opt_size & O_MINUS) && (!(pf->opt_size & O_SPACE)))
 	{
-		*pf->str[pf->i] = '-';
-		pf->i += ft_inttostr(print, pf->str, pf->prec);
-		padding(twidth, ' ');
+		pf->str[pf->i++] = '-';
+		pf->i += ft_inttostr(print, pf->str, 0);
+		padding(pf, twidth, ' ');
 	}
 	else if ((!(pf->opt_size & O_MINUS)) && ((!(pf->opt_size & O_SPACE)) || pf->opt_size & O_SPACE))
 	{
 		if (pf->opt_size & O_ZERO)
 		{   
-			ft_putchar('-');
-			padding(twidth, '0');
-			ft_putnbr(print);
+			pf->str[pf->i++] = '-';
+			padding(pf, twidth, '0');
+			pf->i += ft_inttostr(print, pf->str, 0);
 		}
 		else
 		{
-			padding(twidth, ' ');
-			ft_putchar('-');
-			ft_putnbr(print);
+			padding(pf, twidth, ' ');
+			pf->str[pf->i++] = '-';
+			pf->i += ft_inttostr(print, pf->str, 0);
 		}
 	}
 	else if (pf->opt_size & O_MINUS && pf->opt_size & O_SPACE)
 	{
-		ft_putchar('-');
-		ft_putnbr(print);
-		padding(twidth, ' ');
+		pf->str[pf->i++] = '-';
+		pf->i += ft_inttostr(print, pf->str, 0);
+		padding(pf, twidth, ' ');
 	}
 	else
-		ft_putnbr(print);
+		pf->i += ft_inttostr(print, pf->str, 0);
 }
 
 void	pos_int_print(t_printf *pf, int twidth, uintmax_t print)
 {
+	pf->i = 0;
 	if ((pf->opt_size & O_MINUS) && (!(pf->opt_size & O_SPACE)))
 	{
 		if (pf->opt_size & O_PLUS)
 		{
-			ft_putchar('+');
+			pf->str[pf->i++] = '+';
 			twidth = twidth - 1;
 		}
-		ft_putnbr(print);
-		padding(twidth, ' ');
+		pf->i += ft_inttostr(print, pf->str, 0);
+		padding(pf, twidth, ' ');
 	}
 	else if ((!(pf->opt_size & O_MINUS)) && ((!(pf->opt_size & O_SPACE)) || pf->opt_size & O_SPACE))
 	{
@@ -77,40 +78,40 @@ void	pos_int_print(t_printf *pf, int twidth, uintmax_t print)
 		{   
 			if (pf->opt_size & O_SPACE)
 			{    
-				padding(1, ' ');
+				padding(pf, twidth, ' ');
 				twidth = twidth - 1;
 			}
 			else if (pf->opt_size & O_PLUS)
 			{	
-				ft_putchar('+');
+				pf->str[pf->i++] = '+';
 				twidth = twidth - 1;
 			}
-			padding(twidth, '0');
-			ft_putnbr(print);
+			padding(pf, twidth, '0');
+			pf->i += ft_inttostr(print, pf->str, 0);
 		}
 		else
 		{
 			if (pf->opt_size & O_PLUS)
 			{
-				padding(twidth - 1, ' ');
-				ft_putchar('+');
-				ft_putnbr(print);
+				padding(pf, twidth - 1, ' ');
+				pf->str[pf->i++] = '+';
+				pf->i += ft_inttostr(print, pf->str, 0);
 			}
 			else
 			{
-				padding(twidth, ' ');
-				ft_putnbr(print);
+				padding(pf, twidth, ' ');
+				pf->i += ft_inttostr(print, pf->str, 0);
 			}
 		}
+		if (pf->opt_size & O_MINUS && pf->opt_size & O_SPACE)
+		{
+			padding(pf, 1, ' ');
+			pf->i += ft_inttostr(print, pf->str, 0);
+			padding(pf, twidth - 1, ' ');
+		}
+		else
+			pf->i += ft_inttostr(print, pf->str, 0);
 	}
-	else if (pf->opt_size & O_MINUS && pf->opt_size & O_SPACE)
-	{
-		padding(1, ' ');
-		ft_putnbr(print);
-		padding(twidth - 1, ' ');
-	}
-	else
-		ft_putnbr(print);
 }
 
 void    di_options_print(t_printf *pf)
@@ -125,10 +126,12 @@ void    di_options_print(t_printf *pf)
 	{
 		print = print * -1;
 		neg_int_print(pf, twidth, print);
+		write(1, pf->str, ft_strlen(pf->str));
 	}
 	else if (is_neg_int(print) == 0)
 	{
 		print = (uintmax_t)print;
 		pos_int_print(pf, twidth, print);
+		write(1, pf->str, ft_strlen(pf->str));
 	}
 }
