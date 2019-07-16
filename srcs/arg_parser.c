@@ -103,11 +103,6 @@ int		conv_check(t_printf *pf)
 
 int		arg_parser(t_printf *pf)
 {
-	char	*str;
-	int		i;
-
-	str = "cspdiiouxXf";
-	i = 0;
 	opt_check(pf);
     width_check(pf);
     prec_check(pf);

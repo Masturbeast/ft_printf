@@ -1,5 +1,13 @@
 #include "ft_printf.h"
 
+void	reset_struct(t_printf *pf)
+{
+	pf->opt_size = 0;
+	pf->prec = 0;
+	pf->width = 0;
+	pf->conv = 0;
+}
+
 int     ft_printf(const char *format, ...)
 {
     t_printf pf; 
@@ -10,6 +18,7 @@ int     ft_printf(const char *format, ...)
     {
         if (*pf.fmt == '%' && pf.fmt++)
         {
+            reset_struct(&pf);
             if (arg_parser(&pf) == 1)
             {   
                 di_options_print(&pf);

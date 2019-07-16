@@ -6,6 +6,7 @@
 # include <string.h>
 # include <stdarg.h>
 # include <stdlib.h>
+# include <stdint.h>
 
 # define BUFF_SIZE 100
 
@@ -69,6 +70,7 @@ typedef struct  s_printf
 /* Main function */
 
 int		ft_printf(const char *fmt, ...);
+void	reset_struct(t_printf *pf);
 
 /* Parser funtcions */
 

@@ -64,9 +64,12 @@ void	pos_int_print(t_printf *pf, int twidth, uintmax_t print)
 	if ((pf->opt_size & O_MINUS) && (!(pf->opt_size & O_SPACE)))
 	{
 		if (pf->opt_size & O_PLUS)
+		{
 			ft_putchar('+');
+			twidth = twidth - 1;
+		}
 		ft_putnbr(print);
-		padding(twidth - 1, ' ');
+		padding(twidth, ' ');
 	}
 	else if ((!(pf->opt_size & O_MINUS)) && ((!(pf->opt_size & O_SPACE)) || pf->opt_size & O_SPACE))
 	{
