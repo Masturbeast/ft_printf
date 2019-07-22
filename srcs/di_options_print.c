@@ -115,7 +115,7 @@ void	pos_int_print(t_printf *pf, int twidth, uintmax_t print)
 
 void    di_options_print(t_printf *pf)
 {
-	int         twidth;
+	int        twidth;
 	intmax_t   print;
 
 	print = di_int_cast(pf);

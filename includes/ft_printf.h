@@ -53,6 +53,8 @@ typedef struct  s_printf
 	int 	width;
 	int		prec;
 	char	conv;
+	size_t	fwidth;
+	char*	res;
 	va_list args;
 
 }               t_printf;
@@ -97,11 +99,11 @@ void			ft_bzero(void *s, size_t n);
 int				ft_atoi(const char *str);
 void			ft_putchar(char c);
 int				ft_atoi(const char *str);
-void	ft_bzero(void *s, size_t n);
+void			ft_bzero(void *s, size_t n);
 char			*ft_itoa(int n);
-void	*ft_memset(void *s, int c, size_t n);
-void	ft_strclr(char *s);
-void	ft_putnbr(int n);
+void			*ft_memset(void *s, int c, size_t n);
+void			ft_strclr(char *s);
+void			ft_putnbr(int n);
 
 
 /* Format options functions */
@@ -110,7 +112,7 @@ void	padding(int width, char c);
 void    di_options_print(t_printf *pf);
 void    neg_int_print(t_printf *pf, int twidth, intmax_t print);
 void	pos_int_print(t_printf *pf, int twidth, uintmax_t print);
-void	ft_ftoa(int prec, long double n, char *res);
+void	ft_ftoa(t_printf *pf, long double n);
 char	*neg_fround(int prec, long long int x, long double y, char *intcat);
 char	*pos_fround(int prec, long long int x, long double y, char *intcat);
 

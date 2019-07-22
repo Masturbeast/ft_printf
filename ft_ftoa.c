@@ -225,7 +225,7 @@ char	*f_is_zero(int prec, char *intcat)
 	return (intcat);
 }
 
-void	ft_ftoa(int prec, long double n, char *res)
+void	ft_ftoa(t_printf *pf, long double n)
 { 
     long int 	ipart;
 	int 		i;
@@ -246,32 +246,112 @@ void	ft_ftoa(int prec, long double n, char *res)
 	{
 		if ((1 / n) < 0)
 		{
-			res[0] = '-';
-			res = f_is_zero(prec, res);
+			pf->res[0] = '-';
+			pf->res = f_is_zero(pf->prec, pf->res);
 		}
 		else
-			res = f_is_zero(prec, res);
+			pf->res = f_is_zero(pf->prec, pf->res);
 	}
 	ipart = (long long int)n;
     fpart = n - ipart;
 	if (fpart < 0)
 		fpart *= (-1);
 	if (n < 0)
-		res = neg_fround(prec, ipart, fpart, res);
+		pf->res = neg_fround(pf->prec, ipart, fpart, pf->res);
 	else if (n > 0)
-		res = pos_fround(prec, ipart, fpart, res);
+		pf->res = pos_fround(pf->prec, ipart, fpart, pf->res);
 }
+
+/*void    padding(int width, char c)
+{
+	int     i;
+
+	i = 0;
+	while (i < width)
+	{
+		ft_putchar(c);
+		i++;
+	}
+}
+
+int     is_prec(t_printf *pf)
+{
+	if (pf->prec)
+		return (1);
+	return (0);
+}
+
+int     is_neg_int(intmax_t nb)
+{
+	if (nb < 0)
+		return (1);
+	return (0);
+}
+
+void       f_options_print(t_printf *pf, char *res)
+{
+    if ((pf->opt_size & O_MINUS) && (!(pf->opt_size & O_SPACE)))
+	{
+		ft_putchar('-');
+		ft_putnbr(print);
+		padding(twidth, ' ');
+	}
+	else if ((!(pf->opt_size & O_MINUS)) && ((!(pf->opt_size & O_SPACE)) || pf->opt_size & O_SPACE))
+	{
+		if (pf->opt_size & O_ZERO)
+		{   
+			ft_putchar('-');
+			padding(twidth, '0');
+			ft_putnbr(print);
+		}
+		else
+		{
+			padding(twidth, ' ');
+			ft_putchar('-');
+			ft_putnbr(print);
+		}
+	}
+	else if (pf->opt_size & O_MINUS && pf->opt_size & O_SPACE)
+	{
+		ft_putchar('-');
+		ft_putnbr(print);
+		padding(twidth, ' ');
+	}
+	else
+		ft_putnbr(print);
+}
+
+void    f_options_print(t_printf *pf)
+{
+	//int         twidth;
+	long double  print;
+
+	print = f_int_cast(pf);
+	//twidth = pf->width - ft_int_length(print);
+	
+	if (is_neg_int(print) == 1)
+	{
+		print = print * -1;
+		neg_int_print(pf, twidth, print);
+	}
+	else if (is_neg_int(print) == 0)
+	{
+		print = (uintmax_t)print;
+		pos_int_print(pf, twidth, print);
+	}
+}*/
 
 int		main() 
 {
-    char res[50];
-    long double n = 34.145;
+	t_printf *pf;
+    long double n = 42.145;
     char *str = "float nbr is: 34.145";
-    
-    printf("%s\n", str);
-    ft_ftoa(6, n, res);
+    pf->prec = 5;
+   // printf("%s\n", str);
+    ft_ftoa(pf, n);
 	//printf("\n");
-	printf(" real printf: %.6Lf\n", n); 
-	printf("   my printf: %s\n", res);
+	printf(" real printf: %.5Lf\n", n); 
+	printf("   my printf: %s\n", pf->res);
+	//printf("%zu\n", pf->fwidth);
     return (0); 
 }

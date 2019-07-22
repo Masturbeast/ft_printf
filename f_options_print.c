@@ -58,3 +58,22 @@ void       f_options_print(t_printf *pf, char *res)
 	else
 		ft_putnbr(print);
 }
+void    f_options_print(t_printf *pf)
+{
+	int         twidth;
+	intmax_t   print;
+
+	print = di_int_cast(pf);
+	twidth = pf->width - ft_int_length(print);
+	
+	if (is_neg_int(print) == 1)
+	{
+		print = print * -1;
+		neg_int_print(pf, twidth, print);
+	}
+	else if (is_neg_int(print) == 0)
+	{
+		print = (uintmax_t)print;
+		pos_int_print(pf, twidth, print);
+	}
+}
