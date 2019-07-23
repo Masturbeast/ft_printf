@@ -12,13 +12,6 @@ void    padding(int width, char c)
 	}
 }
 
-int     is_prec(t_printf *pf)
-{
-	if (pf->prec)
-		return (1);
-	return (0);
-}
-
 int     is_neg_int(intmax_t nb)
 {
 	if (nb < 0)

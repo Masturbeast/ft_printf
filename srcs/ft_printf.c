@@ -6,6 +6,7 @@ void	reset_struct(t_printf *pf)
 	pf->prec = 0;
 	pf->width = 0;
 	pf->conv = 0;
+    pf->ilenght = 0;
 }
 
 int     ft_printf(const char *format, ...)
@@ -21,7 +22,8 @@ int     ft_printf(const char *format, ...)
             reset_struct(&pf);
             if (arg_parser(&pf) == 1)
             {   
-                di_options_print(&pf);
+                f_options_print(&pf);
+                //di_options_print(&pf);
             }
             else
                 return (0);
