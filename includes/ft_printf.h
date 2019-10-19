@@ -115,6 +115,7 @@ int		f_options_print(t_printf *pf);
 void	s_print(t_printf *pf);
 void	c_print(t_printf *pf);
 void	p_print(t_printf *pf);
+void    p_print2(unsigned long ptr);
 void    neg_int_print(t_printf *pf, int twidth, intmax_t print);
 void	pos_int_print(t_printf *pf, int twidth, uintmax_t print);
 void    pos_float_print(t_printf *pf, int twidth, char *res);

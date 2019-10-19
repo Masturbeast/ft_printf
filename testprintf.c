@@ -14,8 +14,8 @@ int main()
     str = "A";
     char const *p = "hello";
 
-    ft_printf("%p\n", p);
-    printf("%p\n", p);
+    ft_printf("%-30p\n", p);
+    printf("%-30p\n", p);
     /*printf("%d\n", 0x123);
     printf("%p\n", NULL);
     printf("%p\n", main);*/
