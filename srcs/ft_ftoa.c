@@ -1,19 +1,5 @@
 #include "ft_printf.h"
  
-long long int	int_cat(long long int x, long long int y) 
-{
-	long long int power;
-	
-	power = 10;
-    while (y >= power)
-		power *= 10;
-	if (x < 0)
-	{
-    	return (x * power - y);
-	}
-	return (x * power + y);        
-}
-
 size_t	ft_int_length(long long int n)
 {
 	size_t i;
@@ -246,10 +232,10 @@ void	ft_ftoa(t_printf *pf, long double n)
 		if ((1 / n) < 0)
 		{
 			pf->res[0] = '-';
-			pf->res = f_is_zero(pf, n);
+			ft_strcpy(pf->res, f_is_zero(pf, n));
 		}
 		else
-			pf->res = f_is_zero(pf, n);
+			ft_strcpy(pf->res, f_is_zero(pf, n));
 	}
 	else
 	{
@@ -260,6 +246,6 @@ void	ft_ftoa(t_printf *pf, long double n)
 		if (fpart < 0)
 			fpart *= (-1);
 		pf->ilenght = ft_int_length(ipart);
-		pf->res = pos_fround(pf, ipart, fpart);
+		ft_strcpy(pf->res, pos_fround(pf, ipart, fpart));
 	}
 }

@@ -31,6 +31,7 @@ UTILS	=		$(UTILSDIR)ft_int_lenght.c		\
 				$(UTILSDIR)ft_bzero.c			\
 				$(UTILSDIR)ft_strlen.c			\
 				$(UTILSDIR)ft_strclr.c			\
+				$(UTILSDIR)ft_strcpy.c			\
 
 UTIOBJ		= 	$(UTILS:.c=.o)
 
@@ -48,6 +49,8 @@ SRCS 		=	$(SRCSDIR)ft_printf.c			\
 				$(SRCSDIR)f_options_print.c		\
 				$(SRCSDIR)s_print.c				\
 				$(SRCSDIR)c_print.c				\
+				$(SRCSDIR)p_print.c				\
+				
 
 SRCSOBJ		=	$(SRCS:.c=.o)
 

@@ -27,6 +27,8 @@ int     ft_printf(const char *format, ...)
                     c_print(&pf);
                 if (pf.conv == 's')
                     s_print(&pf);
+                if (pf.conv == 'p')
+                    p_print(&pf);
                 if (pf.conv == 'f')
                     f_options_print(&pf);
                 if (pf.conv == 'd' || pf.conv == 'i')

@@ -1,33 +1,38 @@
-#include <string.h>
-#include <stdio.h> 
-
-void foo(const char* input)
+#include <stdio.h>
+#include <stdlib.h>
+ 
+void my_put_padress (void const *p)
 {
-    char buf[10];
-
-    //printf("My stack looks like:\n%p\n%p\n%p\n%p\n%p\n% p\n\n");
-
-    strcpy(buf, input);
-    printf("%s\n", buf);
-
-    //printf("Now the stack looks like:\n%p\n%p\n%p\n%p\n%p\n%p\n\n");
+   unsigned long adr;
+   char const *base;
+   char res[9];
+   int i;
+ 
+   adr = (unsigned long) p;
+   base = "0123456789abcdef";
+   i = 8;
+   while ((adr / 16) > 0 || i >= 8)
+   {
+      res[i] = base[(adr % 16)];
+      adr /= 16;
+      i--;
+   }
+   res[i] = base[(adr % 16)];
+   putchar ('0');
+   putchar ('x');
+   while (i < 9)
+   {
+      putchar (res[i]);
+      i++;
+   }
 }
-
-void bar(void)
+ 
+int main (void)
 {
-    printf("Augh! I've been hacked!\n");
-}
-
-int main(int argc, char* argv[])
-{
-    //Blatant cheating to make life easier on myself
-    printf("Address of foo = %p\n", foo);
-    printf("Address of bar = %p\n", bar);
-    if (argc != 2) 
- {
-        printf("Please supply a string as an argument!\n");
-        return -1;
-    } 
-foo(argv[1]);
-    return 0;
+   char const *p = "hello";
+ 
+   printf ("%p\n", (void *) p);
+   my_put_padress (p);
+ 
+   return 0;
 }

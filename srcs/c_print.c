@@ -2,8 +2,19 @@
 
 void	c_print(t_printf *pf)
 {
-	char c;
+	int		twidth;
+	char 	c;
 	
 	c = c_conv(pf);
-	write(1, &c, 1);
+	twidth = pf->width - 1;
+	if (pf->opt_size & O_MINUS)
+	{
+		write(1, &c, 1);
+		padding(twidth, ' ');
+	}
+	else
+	{
+		padding(twidth, ' ');
+		write(1, &c, 1);
+	}
 }

@@ -68,7 +68,6 @@ void	pos_int_print(t_printf *pf, int twidth, uintmax_t print)
 	{
 		if (pf->opt_size & O_ZERO || pf->prec > 0)
 		{   
-			printf("test\n");
 			twidth += pf->prec;
 			if (pf->opt_size & O_SPACE)
 			{    
@@ -117,8 +116,6 @@ void	pos_int_print(t_printf *pf, int twidth, uintmax_t print)
 		ft_putnbr(print);
 		padding(twidth - 1, ' ');
 	}
-	else
-		ft_putnbr(print);
 }
 
 void    di_options_print(t_printf *pf)

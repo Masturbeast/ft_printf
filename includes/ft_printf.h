@@ -51,7 +51,7 @@ typedef struct  s_printf
 	int 	width;
 	int		prec;
 	char	conv;
-	char	*res;
+	char	res[300];
 	va_list args;
 	int		ilenght;
 	int		index;
@@ -103,6 +103,7 @@ char			*ft_itoa(int n);
 void			*ft_memset(void *s, int c, size_t n);
 void			ft_strclr(char *s);
 void			ft_putnbr(int n);
+char			*ft_strcpy(char *dest, const char *src);
 
 
 /* Format options functions */
@@ -113,6 +114,7 @@ void    di_options_print(t_printf *pf);
 int		f_options_print(t_printf *pf);
 void	s_print(t_printf *pf);
 void	c_print(t_printf *pf);
+void	p_print(t_printf *pf);
 void    neg_int_print(t_printf *pf, int twidth, intmax_t print);
 void	pos_int_print(t_printf *pf, int twidth, uintmax_t print);
 void    pos_float_print(t_printf *pf, int twidth, char *res);
@@ -123,10 +125,11 @@ char	*decimal_manager(long long int y, int prec);
 
 /* Cast functions */
 
-intmax_t	di_int_cast(t_printf *pf);
-uintmax_t   oux_int_cast(t_printf *pf);
-long double f_float_cast(t_printf *pf);
-char		*s_conv(t_printf *pf);
-int			c_conv(t_printf *pf);
+intmax_t		di_int_cast(t_printf *pf);
+uintmax_t   	oux_int_cast(t_printf *pf);
+long double 	f_float_cast(t_printf *pf);
+char			*s_conv(t_printf *pf);
+int				c_conv(t_printf *pf);
+unsigned long	p_conv(t_printf *pf);
 
 #endif

@@ -61,6 +61,7 @@ void       neg_float_print(t_printf *pf, unsigned int twidth, char *res)
 			}
 			else
 			{
+				padding(twidth - 1, ' ');
 				write(1, "-", 1);
 				write(1, res, (pf->ilenght + pf->prec + 1));
 			}
@@ -117,17 +118,20 @@ void       pos_float_print(t_printf *pf, int twidth, char *res)
 				}
 				else if (pf->width <= (pf->ilenght + pf->prec))
 				{
-					padding(1, ' ');
+					padding(twidth, ' ');
 					write(1, res, (pf->ilenght + pf->prec));
 				}
 				else
 				{
-					padding(twidth + 1, ' ');
+					padding(twidth, ' ');
 					write(1, res, (pf->ilenght + pf->prec));
 				}
 			}
 			else
+			{
+				padding(twidth, ' ');	
 				write(1, res, (pf->ilenght + pf->prec));
+			}
 		}
 	}
 	else if (pf->opt_size & O_MINUS && pf->opt_size & O_SPACE)
@@ -146,8 +150,8 @@ int    f_options_print(t_printf *pf)
 
 	print = f_float_cast(pf);
 	//printf("in f_options_print, print is : %Lf\n", print);
-	if ((pf->res = (char*)malloc(sizeof(char) * (pf->ilenght + pf->prec + 1))) == NULL)
-		return (0);
+	/*if ((pf->res = (char*)malloc(sizeof(char) * (pf->ilenght + pf->prec + 1))) == NULL)
+		return (0);*/
 	ft_ftoa(pf, print);
 	//printf("in f_options_print, print2 is : %Lf\n", print);
 	//printf("in f_options_print, pf->res is : %s\n", pf->res);
@@ -170,6 +174,6 @@ int    f_options_print(t_printf *pf)
 		pos_float_print(pf, twidth, pf->res);
 		//printf("in f_options_print, pf->res2 is : %s\n", pf->res);
 	}
-	free(pf->res);
+	//free(pf->res);
 	return (0);
 }
