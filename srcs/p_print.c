@@ -7,7 +7,7 @@ unsigned long  p_conv(t_printf *pf)
 
 void    p_print2(unsigned long ptr)
 {
-   char const		*base;
+   char		      base[16];
    char				res[9];
    int				i;
  

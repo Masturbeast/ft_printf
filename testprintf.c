@@ -11,11 +11,11 @@ int main()
 
     a = 69;
     b = &a;
-    str = "A";
+    str = "tamer";
     char const *p = "hello";
 
-    ft_printf("%-30p\n", p);
-    printf("%-30p\n", p);
+    ft_printf("%-20s\n", str);
+    printf("%-20s\n", str);
     /*printf("%d\n", 0x123);
     printf("%p\n", NULL);
     printf("%p\n", main);*/

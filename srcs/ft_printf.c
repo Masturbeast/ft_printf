@@ -33,6 +33,8 @@ int     ft_printf(const char *format, ...)
                     f_options_print(&pf);
                 if (pf.conv == 'd' || pf.conv == 'i')
                     di_options_print(&pf);
+                /*if (pf.conv == 'o')
+                    o_options_print(&pf);*/
             }
             else
                 return (0);
