@@ -29,7 +29,7 @@ void    neg_int_print(t_printf *pf, int twidth, intmax_t print)
 	}
 	else if ((!(pf->opt_size & O_MINUS)) && ((!(pf->opt_size & O_SPACE)) || pf->opt_size & O_SPACE))
 	{
-		if (pf->opt_size & O_ZERO)
+		if (pf->opt_size & O_ZERO || pf->prec > 0)
 		{   
 			ft_putchar('-');
 			padding(twidth, '0');
@@ -66,8 +66,10 @@ void	pos_int_print(t_printf *pf, int twidth, uintmax_t print)
 	}
 	else if ((!(pf->opt_size & O_MINUS)) && ((!(pf->opt_size & O_SPACE)) || pf->opt_size & O_SPACE))
 	{
-		if (pf->opt_size & O_ZERO)
+		if (pf->opt_size & O_ZERO || pf->prec > 0)
 		{   
+			printf("test\n");
+			twidth += pf->prec;
 			if (pf->opt_size & O_SPACE)
 			{    
 				padding(1, ' ');
@@ -88,6 +90,19 @@ void	pos_int_print(t_printf *pf, int twidth, uintmax_t print)
 				padding(twidth - 1, ' ');
 				ft_putchar('+');
 				ft_putnbr(print);
+			}
+			else if (pf->opt_size & O_SPACE)
+			{
+				if (pf->width == 0)
+				{
+					padding(1, ' ');
+					ft_putnbr(print);
+				}
+				else
+				{
+					padding(twidth, ' ');
+					ft_putnbr(print);
+				}
 			}
 			else
 			{
@@ -113,7 +128,8 @@ void    di_options_print(t_printf *pf)
 
 	print = di_int_cast(pf);
 	twidth = pf->width - ft_int_length(print);
-	
+	//printf("twidth is : %d\n", twidth);
+	//printf("pf->prec is : %d\n", pf->prec);
 	if (is_neg_int(print) == 1)
 	{
 		print = print * -1;

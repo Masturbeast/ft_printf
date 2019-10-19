@@ -55,7 +55,8 @@ typedef struct  s_printf
 	va_list args;
 	int		ilenght;
 	int		index;
-
+	int		count;
+	int		dot;
 }               t_printf;
 /*
     flags (declared as variables) included in format struct:
@@ -92,7 +93,6 @@ long long int	int_cat(long long int x, long long int y);
 long long int	ft_power(long long int x, long long int power);
 void			ft_str_reverse(char *str, int len);
 int				ft_inttostr(long long int x, char *str, int prec);
-char			*fround(long long int x, long double y, int prec);
 void			*ft_memset(void *s, int c, size_t n);
 void			ft_bzero(void *s, size_t n);
 int				ft_atoi(const char *str);
@@ -111,17 +111,22 @@ void	padding(int width, char c);
 void    fpadding(int width, char c);
 void    di_options_print(t_printf *pf);
 int		f_options_print(t_printf *pf);
+void	s_print(t_printf *pf);
+void	c_print(t_printf *pf);
 void    neg_int_print(t_printf *pf, int twidth, intmax_t print);
 void	pos_int_print(t_printf *pf, int twidth, uintmax_t print);
-void    pos_float_print(t_printf *pf, unsigned long twidth, char *res);
+void    pos_float_print(t_printf *pf, int twidth, char *res);
 void	ft_ftoa(t_printf *pf, long double n);
-char	*neg_fround(int prec, long long int x, long double y, char *intcat);
-char	*pos_fround(int prec, long long int x, long double y, char *intcat);
+//char	*neg_fround(t_printf *pf, long long int x, long double y);
+char	*pos_fround(t_printf *pf, long long int x, long double y);
+char	*decimal_manager(long long int y, int prec);
 
 /* Cast functions */
 
 intmax_t	di_int_cast(t_printf *pf);
 uintmax_t   oux_int_cast(t_printf *pf);
 long double f_float_cast(t_printf *pf);
+char		*s_conv(t_printf *pf);
+int			c_conv(t_printf *pf);
 
 #endif

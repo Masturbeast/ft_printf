@@ -43,13 +43,19 @@ void	prec_check(t_printf *pf)
 {
 	if (*pf->fmt == 46)
 	{	
+		pf->dot = 1;
 		pf->fmt++;
 		if (*pf->fmt >= 48 && *pf->fmt <= 57)
 			pf->prec = ft_atoi(pf->fmt);
+		else
+			pf->prec = 0;
 	}
 	else
-		pf->prec = 0;
-	while (*pf->fmt >= 49 && *pf->fmt <= 57)
+	{
+		pf->prec = 6;
+		pf->dot	= 0;
+	}
+	while (*pf->fmt >= 48 && *pf->fmt <= 57)
 		pf->fmt++;
 }
 
@@ -109,6 +115,8 @@ int		arg_parser(t_printf *pf)
     size_check(pf);
 	if (conv_check(pf) == 0 || !pf->conv)
 		return (0);
+	if (pf->conv != 'f' && pf->dot == 0)
+		pf->prec = 0;
 	//printf("In format, pf.fmt = %c\n", *pf->fmt);
 	//printf("in parser, conv is : %c\n", pf->conv);
 	return (1);	

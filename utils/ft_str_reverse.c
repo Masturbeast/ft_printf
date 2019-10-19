@@ -15,5 +15,6 @@ void	ft_str_reverse(char *str, int len)
         str[j] = temp; 
         i++; 
 		j--; 
-    } 
+    }
+    str[i] = '\0';
 }

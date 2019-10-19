@@ -36,6 +36,8 @@ UTIOBJ		= 	$(UTILS:.c=.o)
 
 CONV		=	$(CONVDIR)int_size_mod.c		\
 				$(CONVDIR)float_size_mod.c		\
+				$(CONVDIR)s_conv.c				\
+				$(CONVDIR)c_conv.c				\
 
 CONVOBJ		=	$(CONV:.c=.o)
 
@@ -44,6 +46,8 @@ SRCS 		=	$(SRCSDIR)ft_printf.c			\
 				$(SRCSDIR)arg_parser.c			\
 				$(SRCSDIR)di_options_print.c	\
 				$(SRCSDIR)f_options_print.c		\
+				$(SRCSDIR)s_print.c				\
+				$(SRCSDIR)c_print.c				\
 
 SRCSOBJ		=	$(SRCS:.c=.o)
 
