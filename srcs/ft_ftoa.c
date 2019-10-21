@@ -89,7 +89,7 @@ char	*pos_fround(t_printf *pf, long long int x, long double y)
 	}
 	ft_strclr(pf->res);
 	i = ft_inttostr(x, pf->res, 0);
-	if (pf->prec != 0)
+	if (pf->prec != 0 || pf->opt_size & O_HASH)
 	{
 		pf->res[i] = '.';
 		i++;

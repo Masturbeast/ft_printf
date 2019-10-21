@@ -11,11 +11,12 @@ int main()
 
     a = 9223372036854775807;
     str = NULL;
-    ft_printf("%30s\n", "ABCDEFGHIJKLMNOP");
+    //ft_printf("%30s\n", "ABCDEFGHIJKLMNOP");
     //printf("%30s\n", ft_itoa_base(42, 16));
-    printf("%30s\n", "ABCDEFGHIJKLMNOP");
-    /*printf("%d\n", 0x123);
-    printf("%p\n", NULL);
+    //printf("%30s\n", "ABCDEFGHIJKLMNOP");
+    ft_printf("%#f\n", 42.965165);
+    printf("%#f\n", 42.965165);
+    /*printf("%p\n", NULL);
     printf("%p\n", main);*/
 }
 
