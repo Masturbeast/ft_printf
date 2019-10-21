@@ -7,9 +7,8 @@ void	s_print(t_printf *pf)
 	int		len;
 	
 	str = s_conv(pf);
-	if(!(s_conv(pf)))
-		write(1, "(null)", 6);
-	printf("str is : %s\n", str);
+	if (str == NULL)
+		str = "(null)";
 	len = ft_strlen(str);
 	twidth = pf->width - len;
 	if (pf->opt_size & O_MINUS)

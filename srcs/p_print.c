@@ -1,13 +1,8 @@
 #include "ft_printf.h"
 
-unsigned long  p_conv(t_printf *pf)
-{
-   return(va_arg(pf->args, unsigned long));
-}
-
 void    p_print2(unsigned long ptr)
 {
-   char		      base[16];
+   char		      *base;
    char				res[9];
    int				i;
  

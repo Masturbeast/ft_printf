@@ -32,6 +32,7 @@ UTILS	=		$(UTILSDIR)ft_int_lenght.c		\
 				$(UTILSDIR)ft_strlen.c			\
 				$(UTILSDIR)ft_strclr.c			\
 				$(UTILSDIR)ft_strcpy.c			\
+				$(UTILSDIR)ft_itoa_base.c		\
 
 UTIOBJ		= 	$(UTILS:.c=.o)
 
@@ -39,6 +40,7 @@ CONV		=	$(CONVDIR)int_size_mod.c		\
 				$(CONVDIR)float_size_mod.c		\
 				$(CONVDIR)s_conv.c				\
 				$(CONVDIR)c_conv.c				\
+				$(CONVDIR)p_conv.c				\
 
 CONVOBJ		=	$(CONV:.c=.o)
 
@@ -50,6 +52,7 @@ SRCS 		=	$(SRCSDIR)ft_printf.c			\
 				$(SRCSDIR)s_print.c				\
 				$(SRCSDIR)c_print.c				\
 				$(SRCSDIR)p_print.c				\
+				$(SRCSDIR)u_options_print.c	\
 				
 
 SRCSOBJ		=	$(SRCS:.c=.o)
