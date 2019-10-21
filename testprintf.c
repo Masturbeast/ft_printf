@@ -7,11 +7,13 @@
 int main()
 {   
     char *str;
+    unsigned long long a;
 
+    a = 9223372036854775807;
     str = NULL;
-    //ft_printf("%30s %-15s\n", str, "TEP");
+    ft_printf("%o\n", 42);
     //printf("%30s\n", ft_itoa_base(42, 16));
-    printf("%#.0f\n", 42.9532);
+    printf("%o\n", 42);
     /*printf("%d\n", 0x123);
     printf("%p\n", NULL);
     printf("%p\n", main);*/

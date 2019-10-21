@@ -52,8 +52,8 @@ SRCS 		=	$(SRCSDIR)ft_printf.c			\
 				$(SRCSDIR)s_print.c				\
 				$(SRCSDIR)c_print.c				\
 				$(SRCSDIR)p_print.c				\
-				$(SRCSDIR)u_options_print.c	\
-				
+				$(SRCSDIR)u_options_print.c		\
+				$(SRCSDIR)o_options_print.c		\
 
 SRCSOBJ		=	$(SRCS:.c=.o)
 

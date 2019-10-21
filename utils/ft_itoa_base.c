@@ -12,11 +12,11 @@ static	char	*ft_itoa_bis(long int tmp, int a, char *str, int base)
 	return (str);
 }
 
-char			*ft_itoa_base(int value, int base)
+char			*ft_itoa_base(unsigned int value, int base)
 {
-	char		*str;
-	long int	tmp;
-	int			a;
+	char			*str;
+	unsigned int	tmp;
+	int				a;
 
 	tmp = value;
 	a = 0;
