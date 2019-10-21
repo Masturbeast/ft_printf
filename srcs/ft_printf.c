@@ -21,7 +21,6 @@ int     ft_printf(const char *format, ...)
     {
         if (*pf.fmt == '%' && pf.fmt++)
         {
-            reset_struct(&pf);
             if (arg_parser(&pf) == 1)
             {   
                 if (pf.conv == 'c')
@@ -38,13 +37,18 @@ int     ft_printf(const char *format, ...)
                     u_options_print(&pf);
                 if (pf.conv == 'o')
                     o_options_print(&pf);
+                if (pf.conv == '%')
+                    percent_print(&pf);
+                reset_struct(&pf);
             }
             else
                 return (0);
         }
-        ft_putchar(*pf.fmt);
-        if (*pf.fmt != '\0')
+        if (*pf.fmt != '\0' && *pf.fmt != '%')
+        {
+            ft_putchar(*pf.fmt);
             pf.fmt++;
+        }
         if (*pf.fmt == '\0')
             return (0);
     }

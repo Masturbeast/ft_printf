@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-static	char	*ft_itoa_bis(long int tmp, int a, char *str, int base)
+static	char	*ft_itoa_bis(unsigned int tmp, int a, char *str, int base)
 {
 	const char	*baze = "0123456789abcdef";
 

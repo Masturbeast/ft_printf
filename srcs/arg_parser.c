@@ -94,7 +94,9 @@ int		conv_check(t_printf *pf)
 	char	*str;
 	int		i;
 
-	str = "cspdiouxXf";
+	/*printf("*pf->fmt is : %c\n", *pf->fmt);
+	printf("*pf->conv is : %c\n", pf->conv);*/
+	str = "cspdiouxXf%";
 	i = 0;
 	while (str[i] && str[i] != *pf->fmt)
 		i++;
@@ -102,6 +104,19 @@ int		conv_check(t_printf *pf)
 	{
 		pf->conv = str[i];
 		pf->fmt++;
+		/*if(pf->conv == '%')
+		{
+			i = 0;
+			while (str[i] && str[i] != *pf->fmt)
+			{
+				if (str[i] == *pf->fmt)
+				{
+					pf->conv = str[i];
+					pf->fmt++;
+				}
+				i++;
+			}
+		}*/
 		return (1);
 	}
 	return (0);
