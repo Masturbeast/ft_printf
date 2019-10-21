@@ -10,6 +10,8 @@ void	s_print(t_printf *pf)
 	if (str == NULL)
 		str = "(null)";
 	len = ft_strlen(str);
+	if (pf->prec || (pf->prec == 0 && pf->dot == 1))
+		len = pf->prec;
 	twidth = pf->width - len;
 	if (pf->opt_size & O_MINUS)
 	{

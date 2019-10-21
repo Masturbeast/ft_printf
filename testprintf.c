@@ -11,9 +11,9 @@ int main()
 
     a = 9223372036854775807;
     str = NULL;
-    ft_printf("%o\n", 42);
+    ft_printf("%30s\n", "ABCDEFGHIJKLMNOP");
     //printf("%30s\n", ft_itoa_base(42, 16));
-    printf("%o\n", 42);
+    printf("%30s\n", "ABCDEFGHIJKLMNOP");
     /*printf("%d\n", 0x123);
     printf("%p\n", NULL);
     printf("%p\n", main);*/

@@ -8,6 +8,7 @@ void	reset_struct(t_printf *pf)
 	pf->conv = 0;
     pf->ilenght = 0;
     pf->index = 0;
+    pf->dot = 0;
 }
 
 int     ft_printf(const char *format, ...)
