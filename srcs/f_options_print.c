@@ -20,7 +20,7 @@ void       neg_float_print(t_printf *pf, unsigned int twidth, char *res)
 	{
 		write(1, "-", 1);
 		write(1, res, (pf->ilenght + pf->prec));
-		padding(twidth - 1, ' ');
+		padding(pf, twidth - 1, ' ');
 	}
 	else if ((!(pf->opt_size & O_MINUS)) && ((!(pf->opt_size & O_SPACE)) || (pf->opt_size & O_SPACE)))
 	{
@@ -34,7 +34,7 @@ void       neg_float_print(t_printf *pf, unsigned int twidth, char *res)
 			else
 			{
 				//write(1, "-", 1);
-				padding(twidth - 1, '0');
+				padding(pf, twidth - 1, '0');
 				write(1, res, (pf->ilenght + pf->prec + 1));
 			}
 		}
@@ -54,14 +54,14 @@ void       neg_float_print(t_printf *pf, unsigned int twidth, char *res)
 				}
 				else
 				{
-					padding(twidth - 1, ' ');
+					padding(pf, twidth - 1, ' ');
 					write(1, "-", 1);
 					write(1, res, (pf->ilenght + pf->prec + 1));
 				}
 			}
 			else
 			{
-				padding(twidth - 1, ' ');
+				padding(pf, twidth - 1, ' ');
 				write(1, "-", 1);
 				write(1, res, (pf->ilenght + pf->prec + 1));
 			}
@@ -71,7 +71,7 @@ void       neg_float_print(t_printf *pf, unsigned int twidth, char *res)
 	{
 		write(1, "-", 1);
 		write(1, res, (pf->ilenght + pf->prec + 1));
-		padding(twidth - 1, ' ');
+		padding(pf, twidth - 1, ' ');
 	}
 }
 
@@ -85,27 +85,27 @@ void       pos_float_print(t_printf *pf, int twidth, char *res)
 			twidth = twidth - 1;
 		}
 		write(1, res, (pf->ilenght + pf->prec));
-		padding(twidth, ' ');
+		padding(pf, twidth, ' ');
 	}
 	else if ((!(pf->opt_size & O_MINUS)) && ((!(pf->opt_size & O_SPACE)) || (pf->opt_size & O_SPACE)))
 	{
 		if (pf->opt_size & O_ZERO)
 		{   
 			if (pf->opt_size & O_SPACE)
-				padding(1, ' ');
+				padding(pf, 1, ' ');
 			else if (pf->opt_size & O_PLUS)
 			{	
 				ft_putchar('+');
 				twidth = twidth - 1;
 			}
-			padding(twidth, '0');
+			padding(pf, twidth, '0');
 			write(1, res, (pf->ilenght + pf->prec));
 		}
 		else
 		{
 			if (pf->opt_size & O_PLUS)
 			{
-				padding(twidth - 1, ' ');
+				padding(pf, twidth - 1, ' ');
 				ft_putchar('+');
 				write(1, res, (pf->ilenght + pf->prec));
 			}
@@ -113,23 +113,23 @@ void       pos_float_print(t_printf *pf, int twidth, char *res)
 			{
 				if (pf->width == 0)
 				{
-					padding(1, ' ');
+					padding(pf, 1, ' ');
 					write(1, res, (pf->ilenght + pf->prec));
 				}
 				else if (pf->width <= (pf->ilenght + pf->prec))
 				{
-					padding(twidth, ' ');
+					padding(pf, twidth, ' ');
 					write(1, res, (pf->ilenght + pf->prec));
 				}
 				else
 				{
-					padding(twidth, ' ');
+					padding(pf, twidth, ' ');
 					write(1, res, (pf->ilenght + pf->prec));
 				}
 			}
 			else
 			{
-				padding(twidth, ' ');	
+				padding(pf, twidth, ' ');	
 				write(1, res, (pf->ilenght + pf->prec));
 			}
 		}
@@ -137,9 +137,9 @@ void       pos_float_print(t_printf *pf, int twidth, char *res)
 	else if (pf->opt_size & O_MINUS && pf->opt_size & O_SPACE)
 	{
 		printf("test\n");
-		padding(1, ' ');
+		padding(pf, 1, ' ');
 		write(1, res, (pf->ilenght + pf->prec));
-		padding(twidth, ' ');
+		padding(pf, twidth, ' ');
 	}
 }
 

@@ -8,11 +8,11 @@ void	percent_print(t_printf *pf)
 	if (pf->opt_size & O_MINUS)
 	{
 		write(1, "%", 1);
-		padding(twidth, ' ');
+		padding(pf, twidth, ' ');
 	}
 	else
 	{
-		padding(twidth, ' ');
+		padding(pf, twidth, ' ');
 		write(1, "%'", 1);
 	}
 }

@@ -22,7 +22,7 @@ int main()
     //ft_printf("%#f\n", 42.965165);
     //printf("%s\n" ft_itoa_base(40bbfd, 8));
     //printf("%o\n", 40bbfd);
-    ft_printf("%d\n", 456123);
+    ft_printf("Salut la mif j'ai le count en plus %30d\n", 456123);
     //printf("%d\n",;
     //printf("%p\n", main);
 }

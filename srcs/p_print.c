@@ -51,11 +51,11 @@ void  p_print(t_printf *pf)
 	if (pf->opt_size & O_MINUS)
 	{
 		p_print2(ptr);
-		padding(twidth, ' ');
+		padding(pf, twidth, ' ');
 	}
 	else
 	{
-		padding(twidth, ' ');
+		padding(pf, twidth, ' ');
 		p_print2(ptr);
 	}
 }

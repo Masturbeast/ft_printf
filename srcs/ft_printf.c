@@ -15,9 +15,9 @@ int     ft_printf(const char *format, ...)
 {
     t_printf pf; 
 
+    pf.count = 0;
     pf.fmt = (char *)format;
     va_start(pf.args, format);
-    pf.count = 0;
     while (*pf.fmt != '\0')
     {
         if (*pf.fmt == '%' && pf.fmt++)

@@ -20,30 +20,30 @@ int     is_neg_int(intmax_t nb)
 	return (0);
 }
 
-/*void    neg_int_print(t_printf *pf, int twidth, intmax_t print)
+void    neg_int_print(t_printf *pf, int twidth, intmax_t print)
 {
 	if ((pf->opt_size & O_MINUS) && (!(pf->opt_size & O_SPACE)))
 	{
 		ft_putchar('-');
 		ft_putnbr(print);
-		padding(twidth, ' ');
+		padding(pf, twidth, ' ');
 	}
 	else if ((!(pf->opt_size & O_MINUS)) && ((!(pf->opt_size & O_SPACE)) || pf->opt_size & O_SPACE))
 	{
 		if (pf->opt_size & O_ZERO || pf->prec > 0)
 		{   
 			if (pf->width > pf->prec && pf->prec != 0)
-				padding(twidth, ' ');
+				padding(pf, twidth, ' ');
 			ft_putchar('-');
 			if (pf->prec > 0)
-				padding(pf->prec - ft_int_length(print), '0');
+				padding(pf, pf->prec - ft_int_length(print), '0');
 			else
-				padding(twidth, '0');
+				padding(pf, twidth, '0');
 			ft_putnbr(print);
 		}
 		else
 		{
-			padding(twidth, ' ');
+			padding(pf, twidth, ' ');
 			ft_putchar('-');
 			ft_putnbr(print);
 		}
@@ -52,11 +52,11 @@ int     is_neg_int(intmax_t nb)
 	{
 		ft_putchar('-');
 		ft_putnbr(print);
-		padding(twidth, ' ');
+		padding(pf, twidth, ' ');
 	}
 	else
 		ft_putnbr(print);
-}*/
+}
 
 void	pos_int_print(t_printf *pf, int twidth, uintmax_t print)
 {
@@ -181,7 +181,9 @@ void    di_options_print(t_printf *pf)
 		neg_int_print(pf, twidth, print);
 	}
 	else if (is_neg_int(print) == 0)
+	{
 		pos_int_print(pf, twidth, print);
+	}
 }
 
 /*void	pos_int_print(t_printf *pf, int twidth, uintmax_t print)

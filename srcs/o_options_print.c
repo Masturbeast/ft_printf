@@ -17,52 +17,52 @@ void	o_options_print(t_printf *pf)
 		{
 			if (pf->prec == 0)
 			{
-				padding(twidth - pf->prec - 1, ' ');
-				padding(1, '0');
+				padding(pf, twidth - pf->prec - 1, ' ');
+				padding(pf, 1, '0');
 			}
 			else
 			{
-				padding(pf->width - pf->prec, ' ');
+				padding(pf, pf->width - pf->prec, ' ');
 				if (len >= pf->prec)
-					padding(1, '0');
+					padding(pf, 1, '0');
 				else
-					padding(pf->prec - len, '0');
+					padding(pf, pf->prec - len, '0');
 			}
 			write(1, str, len);
 		}
 		if (pf->opt_size & O_ZERO)
 		{
 			if (pf->width == 0)
-				padding(1, '0');
+				padding(pf, 1, '0');
 			else
-				padding(twidth, '0');
+				padding(pf, twidth, '0');
 			write(1, str, len);
 		}
 		if (pf->opt_size & O_MINUS)
 		{
-			padding(1, '0');
+			padding(pf, 1, '0');
 			write(1, str, len);
-			padding(twidth - pf->prec - 1, ' ');
+			padding(pf, twidth - pf->prec - 1, ' ');
 		}
 	}
 	else if (pf->opt_size & O_ZERO && (!(pf->opt_size & O_MINUS)) && (!(pf->opt_size & O_HASH)))
 	{
-		padding(twidth, '0');
+		padding(pf, twidth, '0');
 		write(1, str, len);
 	}
 	else if (pf->opt_size & O_MINUS)
 	{
-		padding(pf->prec - len, '0');
+		padding(pf, pf->prec - len, '0');
 		write(1, str, len);
 		if (pf->prec)
-			padding(twidth - pf->prec + 1, ' ');
+			padding(pf, twidth - pf->prec + 1, ' ');
 		else
-			padding(twidth - pf->prec, ' ');
+			padding(pf, twidth - pf->prec, ' ');
 	}
 	else
 	{	
-		padding(twidth, ' ');
-		padding(pf->prec - len, '0');
+		padding(pf, twidth, ' ');
+		padding(pf, pf->prec - len, '0');
 		write(1, str, len);
 	}
 }
