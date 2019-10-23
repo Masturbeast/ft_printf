@@ -33,6 +33,7 @@ UTILS	=		$(UTILSDIR)ft_int_lenght.c		\
 				$(UTILSDIR)ft_strclr.c			\
 				$(UTILSDIR)ft_strcpy.c			\
 				$(UTILSDIR)ft_itoa_base.c		\
+				$(UTILSDIR)ft_itoa_base_cap.c	\
 
 UTIOBJ		= 	$(UTILS:.c=.o)
 
@@ -54,6 +55,8 @@ SRCS 		=	$(SRCSDIR)ft_printf.c			\
 				$(SRCSDIR)p_print.c				\
 				$(SRCSDIR)u_options_print.c		\
 				$(SRCSDIR)o_options_print.c		\
+				$(SRCSDIR)x_options_print.c		\
+				$(SRCSDIR)x_cap_options_print.c	\
 				$(SRCSDIR)percent_print.c		\
 
 SRCSOBJ		=	$(SRCS:.c=.o)

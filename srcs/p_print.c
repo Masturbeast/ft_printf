@@ -1,11 +1,26 @@
 #include "ft_printf.h"
 
-void    p_print2(unsigned long ptr)
+int					ft_nbrlen(uintmax_t nb, intmax_t base)
+{
+	int				len;
+
+	len = 0;
+	if (nb == 0)
+		return (1);
+	while (nb)
+	{
+		nb /= base;
+		len += 1;
+	}
+	return (len);
+}
+
+void  p_print2(unsigned long ptr)
 {
    char		      *base;
    char				res[9];
    int				i;
- 
+
    base = "0123456789abcdef";
    i = 8;
    while ((ptr / 16) > 0 || i >= 8)
@@ -31,16 +46,16 @@ void  p_print(t_printf *pf)
    int            len;
  
    ptr = p_conv(pf);
-   len = ft_int_length(ptr);
+   len = ft_nbrlen(ptr, 16) + 2;
    twidth = pf->width - len;
 	if (pf->opt_size & O_MINUS)
 	{
 		p_print2(ptr);
-		padding(twidth - 1, ' ');
+		padding(twidth, ' ');
 	}
 	else
 	{
-		padding(twidth - 1, ' ');
+		padding(twidth, ' ');
 		p_print2(ptr);
 	}
 }

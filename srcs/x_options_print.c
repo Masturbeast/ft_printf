@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	o_options_print(t_printf *pf)
+void	x_options_print(t_printf *pf)
 {
 	unsigned int	print;
 	char 			*str;
@@ -8,7 +8,7 @@ void	o_options_print(t_printf *pf)
 	int				twidth;
 
 	print = oux_int_cast(pf);
-	str = ft_itoa_base(print, 8);
+	str = ft_itoa_base(print, 16);
 	len = ft_strlen(str);
 	twidth = pf->width - len;
 	if (pf->opt_size & O_HASH)
@@ -18,7 +18,7 @@ void	o_options_print(t_printf *pf)
 			if (pf->prec == 0)
 			{
 				padding(twidth - pf->prec - 1, ' ');
-				padding(1, '0');
+				write(1, "0x", 2);
 			}
 			else
 			{

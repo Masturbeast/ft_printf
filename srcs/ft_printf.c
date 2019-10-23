@@ -17,6 +17,7 @@ int     ft_printf(const char *format, ...)
 
     pf.fmt = (char *)format;
     va_start(pf.args, format);
+    pf.count = 0;
     while (*pf.fmt != '\0')
     {
         if (*pf.fmt == '%' && pf.fmt++)
@@ -35,6 +36,8 @@ int     ft_printf(const char *format, ...)
                     di_options_print(&pf);
                 if (pf.conv == 'u')
                     u_options_print(&pf);
+                if (pf.conv == 'x')
+                    x_options_print(&pf);
                 if (pf.conv == 'o')
                     o_options_print(&pf);
                 if (pf.conv == '%')
@@ -47,10 +50,11 @@ int     ft_printf(const char *format, ...)
         if (*pf.fmt != '\0' && *pf.fmt != '%')
         {
             ft_putchar(*pf.fmt);
+            pf.count++;
             pf.fmt++;
         }
         if (*pf.fmt == '\0')
-            return (0);
+            return (printf("count is %d\n", pf.count));
     }
     va_end(pf.args);
     return(0);

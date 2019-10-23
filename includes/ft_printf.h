@@ -105,14 +105,18 @@ void			ft_strclr(char *s);
 void			ft_putnbr(intmax_t n);
 char			*ft_strcpy(char *dest, const char *src);
 char			*ft_itoa_base(unsigned int value, int base);
+char			*ft_itoa_base_cap(unsigned int value, int base);
+int				ft_nbrlen(uintmax_t nb, intmax_t base);
 
 /* Format options functions */
 
-void	padding(int width, char c);
+void	padding(t_printf *pf, int width, char c);
 void    fpadding(int width, char c);
 void    di_options_print(t_printf *pf);
 void    u_options_print(t_printf *pf);
 void	o_options_print(t_printf *pf);
+void	x_options_print(t_printf *pf);
+void	x_cap_options_print(t_printf *pf);
 int		f_options_print(t_printf *pf);
 void	s_print(t_printf *pf);
 void	c_print(t_printf *pf);

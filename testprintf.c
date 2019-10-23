@@ -7,18 +7,23 @@
 int main()
 {   
     char *str;
-    unsigned long long a;
+    //unsigned long long a;
+    int a;
+    int *b;
 
-    a = 9223372036854775807;
-    str = NULL;
+    a = 9223;
+    b = &a;
+    str = "TEP";
+
+
     //ft_printf("%30s\n", "ABCDEFGHIJKLMNOP");
     //printf("%30s\n", ft_itoa_base(42, 16));
     //printf("%30s\n", "ABCDEFGHIJKLMNOP");
     //ft_printf("%#f\n", 42.965165);
-    //printf("%s\n", ft_itoa_base(40bbfd, 8));
+    //printf("%s\n" ft_itoa_base(40bbfd, 8));
     //printf("%o\n", 40bbfd);
-    ft_printf("%%%d ferfref%f\n", 10, 42.42);
-    printf("%%%d ferfref%f\n", 10, 42.42);
+    ft_printf("%d\n", 456123);
+    //printf("%d\n",;
     //printf("%p\n", main);
 }
  //     - + # 0 espace
