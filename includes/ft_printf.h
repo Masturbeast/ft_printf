@@ -104,9 +104,10 @@ void			*ft_memset(void *s, int c, size_t n);
 void			ft_strclr(char *s);
 void			ft_putnbr(uintmax_t n);
 char			*ft_strcpy(char *dest, const char *src);
-char			*ft_itoa_base(unsigned int value, int base);
-char			*ft_itoa_base_cap(unsigned int value, int base);
+char			*ft_itoa_base(uintmax_t value, int base);
+char			*ft_itoa_base_cap(uintmax_t value, int base);
 int				ft_nbrlen(uintmax_t nb, intmax_t base);
+int				ft_strcmp(const char *s1, const char *s2);
 
 /* Format options functions */
 

@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-static	char	*ft_itoa_bis(unsigned int tmp, int a, char *str, int base)
+static	char	*ft_itoa_bis(uintmax_t tmp, int a, char *str, int base)
 {
 	const char	*baze = "0123456789ABCDEF";
 
@@ -12,10 +12,10 @@ static	char	*ft_itoa_bis(unsigned int tmp, int a, char *str, int base)
 	return (str);
 }
 
-char			*ft_itoa_base_cap(unsigned int value, int base)
+char			*ft_itoa_base_cap(uintmax_t value, int base)
 {
 	char			*str;
-	unsigned int	tmp;
+	uintmax_t		tmp;
 	int				a;
 
 	tmp = value;

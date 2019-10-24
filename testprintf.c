@@ -22,8 +22,8 @@ int main()
     //ft_printf("%#f\n", 42.965165);
     //printf("%s\n" ft_itoa_base(40bbfd, 8));
     //printf("%o\n", 40bbfd);
-    ft_printf("%lu\n", (unsigned long)-42);
-    printf("%lu\n", (unsigned long)-42);
+    ft_printf("%-10.5o\n", 2500);
+    printf("%-10.5o\n", 2500);
     //printf("%p\n", main);
 }
  //     - + # 0 espace

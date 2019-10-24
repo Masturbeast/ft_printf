@@ -2,7 +2,7 @@
 
 void	x_cap_options_print(t_printf *pf)
 {
-	unsigned int	print;
+	uintmax_t		print;
 	char 			*str;
 	int 			len;
 	int				twidth;
@@ -22,9 +22,14 @@ void	x_cap_options_print(t_printf *pf)
 				{
 					padding(pf, twidth - pf->prec - 2, ' ');
 					write(1, "0X", 2);
+					pf->count += 2;
 				}
 				else
+				{
+					if (print == 0 && pf->dot == 1)
+						pf->count -= len;
 					padding(pf, pf->width - pf->prec, ' ');
+				}
 			}
 			else
 			{
@@ -40,16 +45,31 @@ void	x_cap_options_print(t_printf *pf)
 		if (pf->opt_size & O_ZERO)
 		{
 			if (pf->width == 0)
-				padding(pf, 1, '0');
+			{
+				write(1, "0X", 2);
+				pf->count += 2;
+			}
 			else
-				padding(pf, twidth, '0');
+			{
+				write(1, "0X", 2);
+				pf->count += 2;
+				padding(pf, twidth - 2, '0');
+			}
 			write(1, str, len);
 		}
 		if (pf->opt_size & O_MINUS)
 		{
-			padding(pf, 1, '0');
+			if (pf->opt_size & O_ZERO)
+			{
+				write(1, "0X", 2);
+				twidth -= 2;
+				pf->count += 2;
+			}
+			write(1, "0X", 2);
+			twidth -= 2;
+			pf->count += 2;
 			write(1, str, len);
-			padding(pf, twidth - pf->prec - 1, ' ');
+			padding(pf, twidth - pf->prec, ' ');
 		}
 	}
 	else if (pf->opt_size & O_ZERO && (!(pf->opt_size & O_MINUS)) && (!(pf->opt_size & O_HASH)))
@@ -70,7 +90,12 @@ void	x_cap_options_print(t_printf *pf)
 	{	
 		if ((pf->prec != 0 && print != 0) || (print == 0 && pf->dot != 1) || print != 0)
 		{
-			padding(pf, pf->width - pf->prec, ' ');
+			if (pf->prec == 0)
+				padding(pf, twidth - pf->prec, ' ');
+			else if(pf->prec < len)
+				padding(pf, twidth, ' ');
+			else
+				padding(pf, pf->width - pf->prec, ' ');
 			padding(pf, pf->prec - len, '0');
 			write(1, str, len);
 		}
