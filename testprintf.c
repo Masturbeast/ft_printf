@@ -22,9 +22,9 @@ int main()
     //ft_printf("%#f\n", 42.965165);
     //printf("%s\n" ft_itoa_base(40bbfd, 8));
     //printf("%o\n", 40bbfd);
-    ft_printf("Salut la mif j'ai le count en plus %30d\n", 456123);
-    //printf("%d\n",;
+    ft_printf("%lu\n", (unsigned long)-42);
+    printf("%lu\n", (unsigned long)-42);
     //printf("%p\n", main);
 }
  //     - + # 0 espace
- // example : 4242.42424242
+ // example : 4242.42424242ß

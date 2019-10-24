@@ -38,6 +38,8 @@ int     ft_printf(const char *format, ...)
                     u_options_print(&pf);
                 if (pf.conv == 'x')
                     x_options_print(&pf);
+                if (pf.conv == 'X')
+                    x_cap_options_print(&pf);
                 if (pf.conv == 'o')
                     o_options_print(&pf);
                 if (pf.conv == '%')
@@ -54,7 +56,7 @@ int     ft_printf(const char *format, ...)
             pf.fmt++;
         }
         if (*pf.fmt == '\0')
-            return (printf("count is %d\n", pf.count));
+            return (pf.count);
     }
     va_end(pf.args);
     return(0);

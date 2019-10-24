@@ -1,21 +1,5 @@
 #include "ft_printf.h"
  
-size_t	ft_int_length(long long int n)
-{
-	size_t i;
-
-	i = 1;
-
-	if (n < 0)
-	{
-		n = -n;
-		i++;
-	}
-	if (n / 10)
-		i += ft_int_length(n / 10);
-	return (i);
-}
-
 void	ft_strclr(char *s)
 {
 	if (s)
@@ -126,23 +110,22 @@ char	*f_is_zero(t_printf *pf, int n)
 		j = 3;
 		pf->ilenght += 2;
 	}*/
-		pf->res[0] = '0';
-		if (pf->prec != 0)
-		{
-			pf->res[1] = '.';
-			i = pf->prec + 2;
-			j = 2;
-			pf->ilenght += 1;
-		}
-		else
-		{
-			i = pf->prec + 1;
-			j = 1;
-		}
+	pf->res[0] = '0';
+	if (pf->prec != 0)
+	{
+		pf->res[1] = '.';
+		i = pf->prec + 2;
+		j = 2;
+		pf->ilenght += 1;
+	}
+	else
+	{
+		i = pf->prec + 1;
+		j = 1;
+	}
 	while (j < i)
 		pf->res[j++] = '0';
 	pf->res[i++] = '\0';
-	//printf("pf->res in f_is_zero is : %s\n", pf->res);
 	return (pf->res);
 }
 

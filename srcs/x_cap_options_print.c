@@ -11,14 +11,20 @@ void	x_cap_options_print(t_printf *pf)
 	str = ft_itoa_base_cap(print, 16);
 	len = ft_strlen(str);
 	twidth = pf->width - len;
+	pf->count += len;
 	if (pf->opt_size & O_HASH)
 	{
 		if ((!(pf->opt_size & O_MINUS)) && (!(pf->opt_size & O_ZERO)))
 		{
 			if (pf->prec == 0)
 			{
-				padding(pf, twidth - pf->prec - 1, ' ');
-				write(1, "0x", 2);
+				if ((pf->prec != 0 && print != 0) || (print == 0 && pf->prec != 0) || print != 0)
+				{
+					padding(pf, twidth - pf->prec - 2, ' ');
+					write(1, "0X", 2);
+				}
+				else
+					padding(pf, pf->width - pf->prec, ' ');
 			}
 			else
 			{
@@ -28,7 +34,8 @@ void	x_cap_options_print(t_printf *pf)
 				else
 					padding(pf, pf->prec - len, '0');
 			}
-			write(1, str, len);
+			if ((pf->prec != 0 && print != 0) || (print == 0 && pf->dot != 1) || print != 0)
+				write(1, str, len);
 		}
 		if (pf->opt_size & O_ZERO)
 		{
@@ -61,8 +68,17 @@ void	x_cap_options_print(t_printf *pf)
 	}
 	else
 	{	
-		padding(pf, twidth, ' ');
-		padding(pf, pf->prec - len, '0');
-		write(1, str, len);
+		if ((pf->prec != 0 && print != 0) || (print == 0 && pf->dot != 1) || print != 0)
+		{
+			padding(pf, pf->width - pf->prec, ' ');
+			padding(pf, pf->prec - len, '0');
+			write(1, str, len);
+		}
+		else
+		{
+			padding(pf, twidth + 1 , ' ');
+			padding(pf, pf->prec - len, '0');
+			pf->count--;
+		}
 	}
 }

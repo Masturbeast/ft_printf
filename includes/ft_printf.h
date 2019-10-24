@@ -87,7 +87,7 @@ char	get_conv(char *str, char c);
 
 /*  Utils functions */
 
-size_t			ft_int_length(long long int n);
+size_t			ft_int_length(uintmax_t n);
 size_t			ft_strlen(const char *str);
 long long int	int_cat(long long int x, long long int y);
 long long int	ft_power(long long int x, long long int power);
@@ -102,7 +102,7 @@ void			ft_bzero(void *s, size_t n);
 char			*ft_itoa(int n);
 void			*ft_memset(void *s, int c, size_t n);
 void			ft_strclr(char *s);
-void			ft_putnbr(intmax_t n);
+void			ft_putnbr(uintmax_t n);
 char			*ft_strcpy(char *dest, const char *src);
 char			*ft_itoa_base(unsigned int value, int base);
 char			*ft_itoa_base_cap(unsigned int value, int base);

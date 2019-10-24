@@ -12,7 +12,7 @@ static	char	*ft_itoa_bis(unsigned int tmp, int a, char *str, int base)
 	return (str);
 }
 
-char			*ft_itoa_base(unsigned int value, int base)
+char			*ft_itoa_base_cap(unsigned int value, int base)
 {
 	char			*str;
 	unsigned int	tmp;

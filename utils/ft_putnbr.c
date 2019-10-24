@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-void	ft_putnbr(intmax_t n)
+void	ft_putnbr(uintmax_t n)
 {
-	long int a;
+	uintmax_t a;
 
 	a = n;
 	if (a < 0)

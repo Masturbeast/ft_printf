@@ -11,6 +11,7 @@ void	o_options_print(t_printf *pf)
 	str = ft_itoa_base(print, 8);
 	len = ft_strlen(str);
 	twidth = pf->width - len;
+	pf->count += len;
 	if (pf->opt_size & O_HASH)
 	{
 		if ((!(pf->opt_size & O_MINUS)) && (!(pf->opt_size & O_ZERO)))
@@ -18,7 +19,8 @@ void	o_options_print(t_printf *pf)
 			if (pf->prec == 0)
 			{
 				padding(pf, twidth - pf->prec - 1, ' ');
-				padding(pf, 1, '0');
+				if (print != 0)
+					padding(pf, 1, '0');
 			}
 			else
 			{
@@ -61,8 +63,18 @@ void	o_options_print(t_printf *pf)
 	}
 	else
 	{	
-		padding(pf, twidth, ' ');
-		padding(pf, pf->prec - len, '0');
-		write(1, str, len);
+		if ((pf->prec != 0 && print != 0) || (print == 0 && pf->dot != 1) || print != 0)
+		{
+			padding(pf, pf->width - pf->prec, ' ');
+			padding(pf, pf->prec - len, '0');
+			write(1, str, len);
+		}
+		else
+		{
+			printf("test\n");
+			padding(pf, twidth + 1 , ' ');
+			padding(pf, pf->prec - len, '0');
+			pf->count--;
+		}
 	}
 }

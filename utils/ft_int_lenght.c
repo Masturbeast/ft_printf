@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-size_t	ft_int_length(long long int n)
+size_t	ft_int_length(uintmax_t n)
 {
 	size_t i;
 

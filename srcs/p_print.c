@@ -47,6 +47,7 @@ void  p_print(t_printf *pf)
  
    ptr = p_conv(pf);
    len = ft_nbrlen(ptr, 16) + 2;
+   pf->count += len;
    twidth = pf->width - len;
 	if (pf->opt_size & O_MINUS)
 	{
