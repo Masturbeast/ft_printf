@@ -7,7 +7,6 @@ void	reset_struct(t_printf *pf)
 	pf->width = 0;
 	pf->conv = 0;
     pf->ilenght = 0;
-    pf->index = 0;
     pf->dot = 0;
 }
 
@@ -55,6 +54,7 @@ int     ft_printf(const char *format, ...)
             pf.count++;
             pf.fmt++;
         }
+       // printf("count is %d\n", pf.count);
         if (*pf.fmt == '\0')
             return (pf.count);
     }

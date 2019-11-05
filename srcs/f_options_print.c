@@ -161,5 +161,6 @@ int    f_options_print(t_printf *pf)
 		pos_float_print(pf, twidth, pf->res);
 		pf->count += (pf->ilenght + pf->prec);
 	}
+	ft_strclr(pf->res);
 	return (0);
 }

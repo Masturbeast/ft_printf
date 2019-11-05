@@ -1,54 +1,5 @@
 #include "ft_printf.h"
  
-void	ft_strclr(char *s)
-{
-	if (s)
-		ft_bzero(s, ft_strlen(s));
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	ft_memset(s, 0, n);
-}
-
-void	*ft_memset(void *s, int c, size_t n)
-{
-	char *t;
-
-	t = s;
-	while (n--)
-		*t++ = c;
-	return (s);
-}
-
-size_t		ft_strlen(const char *str)
-{
-	int a;
-
-	a = 0;
-	while (str[a] != '\0')
-		a++;
-	return (a);
-}
-
-void	ft_str_reverse(char *str, int len) 
-{ 
-    int i;
-	int j;
-	int temp;
-
-	i = 0;
-	j = len - 1;
-    while (i < j) 
-    { 
-        temp = str[i]; 
-        str[i] = str[j]; 
-        str[j] = temp; 
-        i++; 
-		j--; 
-	}
-}
-
 char	*pos_fround(t_printf *pf, long long int x, long double y)
 {
 	long long int 	t;
@@ -62,6 +13,7 @@ char	*pos_fround(t_printf *pf, long long int x, long double y)
 	else
 		t = 0;
 	i = ft_inttostr(t, pf->res, 0) - 1;
+	printf("res is %s\n", pf->res);
 	if (x != 0 && pf->res[i] >= '5')
 		t = t + (10 - ft_atoi(&pf->res[i]));
 	if (pf->prec == 0)
@@ -90,6 +42,8 @@ char	*pos_fround(t_printf *pf, long long int x, long double y)
 		pf->ilenght += 1;
 	}
 	i += ft_inttostr(t, pf->res + i, pf->prec);
+	ft_strcpy(pf->res, pf->res);
+	printf("res is %s\n", pf->res);
 	return (pf->res);
 }
 
@@ -97,19 +51,10 @@ char	*f_is_zero(t_printf *pf, int n)
 {
 	int	i;
 	int j;
-	int ipart;
+	long long int ipart;
 
 	ipart = (long long int)n;
 	pf->ilenght = ft_int_length(ipart);
-	/*if (pf->res[0] == '-')
-	{
-		printf("test ftoa\n");
-		pf->res[1] = '0';
-		pf->res[2] = '.';
-		i = pf->prec + 3;
-		j = 3;
-		pf->ilenght += 2;
-	}*/
 	pf->res[0] = '0';
 	if (pf->prec != 0)
 	{

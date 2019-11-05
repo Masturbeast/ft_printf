@@ -28,12 +28,14 @@ UTILS	=		$(UTILSDIR)ft_int_lenght.c		\
 				$(UTILSDIR)ft_memset.c			\
 				$(UTILSDIR)ft_putchar.c			\
 				$(UTILSDIR)ft_putnbr.c			\
+				$(UTILSDIR)ft_uputnbr.c			\
 				$(UTILSDIR)ft_bzero.c			\
 				$(UTILSDIR)ft_strlen.c			\
 				$(UTILSDIR)ft_strclr.c			\
 				$(UTILSDIR)ft_strcpy.c			\
 				$(UTILSDIR)ft_itoa_base.c		\
 				$(UTILSDIR)ft_itoa_base_cap.c	\
+				$(UTILSDIR)ft_memcpy.c			\
 
 UTIOBJ		= 	$(UTILS:.c=.o)
 

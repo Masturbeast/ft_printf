@@ -26,7 +26,10 @@ void	s_print(t_printf *pf)
 		str = "(null)";
 	len = ft_strlen(str);
 	if ((pf->prec || (pf->prec == 0 && pf->dot == 1)) && (ft_strcmp(str, "") != 0))
-		len = pf->prec;
+	{
+		if (!(pf->prec > len))
+			len = pf->prec;
+	}
 	pf->count += len;
 	twidth = pf->width - len;
 	if (pf->opt_size & O_MINUS)

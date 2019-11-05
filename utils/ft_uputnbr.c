@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_uputnbr.c                                        :+:      :+:    :+:  */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atep <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,20 +12,17 @@
 
 #include "ft_printf.h"
 
-void	ft_putnbr(intmax_t n)
+void	ft_uputnbr(uintmax_t n)
 {
-	if (n < -9223372036854775807)
+	uintmax_t a;
+
+	a = n;
+	if (a < 0)
 	{
-		ft_putchar('-');
-		ft_putchar('9');
-		n = 223372036854775808;
-	}
-	if (n < 0)
-	{
-		n = -n;
+		a = -a;
 		ft_putchar('-');
 	}
-	if (n > 9)
-		ft_putnbr(n / 10);
-	ft_putchar(n % 10 + 48);
+	if (a > 9)
+		ft_uputnbr(a / 10);
+	ft_putchar(a % 10 + 48);
 }

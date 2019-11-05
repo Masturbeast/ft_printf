@@ -57,6 +57,15 @@ void  p_print(t_printf *pf)
 	else
 	{
 		padding(pf, twidth, ' ');
-		p_print2(ptr);
+      if (ptr == 0)
+      {
+         write(1, "0x", 2);
+         if (!(pf->dot == 1 && pf->prec == 0))
+            write(1, "0", 1);
+         else
+            pf->count--;
+      }
+      else if (ptr != 0)
+		   p_print2(ptr);
 	}
 }

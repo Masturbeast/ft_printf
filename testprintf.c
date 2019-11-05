@@ -22,8 +22,12 @@ int main()
     //ft_printf("%#f\n", 42.965165);
     //printf("%s\n" ft_itoa_base(40bbfd, 8));
     //printf("%o\n", 40bbfd);
-    ft_printf("%-10.5o\n", 2500);
-    printf("%-10.5o\n", 2500);
+    //printf("\n");
+    ft_printf("%.7f\n", 7.5);
+    printf("%.7f\n", 7.5);
+    
+    //printf("\n");
+    //printf("pf count is %d\n", printf("%+60.55d\n", 0));
     //printf("%p\n", main);
 }
  //     - + # 0 espace

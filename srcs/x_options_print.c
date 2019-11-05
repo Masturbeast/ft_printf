@@ -106,4 +106,5 @@ void	x_options_print(t_printf *pf)
 			pf->count--;
 		}
 	}
+	free(str);
 }

@@ -2,7 +2,7 @@
 
 void	o_options_print(t_printf *pf)
 {
-	unsigned int	print;
+	intmax_t		print;
 	char 			*str;
 	int 			len;
 	int				twidth;
@@ -18,18 +18,11 @@ void	o_options_print(t_printf *pf)
 		{
 			if (pf->prec == 0)
 			{
-				if ((pf->prec != 0 && print != 0) || (print == 0 && pf->prec != 0) || print != 0)
-				{
 					padding(pf, twidth - pf->prec - 1, ' ');
 					write(1, "0", 1);
-					pf->count += 1;
-				}
-				else
-				{
 					if (print == 0 && pf->dot == 1)
 						pf->count -= len;
-					padding(pf, pf->width - pf->prec, ' ');
-				}
+					pf->count += 1;
 			}
 			else
 			{
@@ -82,7 +75,7 @@ void	o_options_print(t_printf *pf)
 		padding(pf, pf->prec - len, '0');
 		write(1, str, len);
 		if (pf->prec)
-			padding(pf, twidth - pf->prec + 1, ' ');
+			padding(pf, pf->width - pf->prec, ' ');
 		else
 			padding(pf, twidth - pf->prec, ' ');
 	}
@@ -106,4 +99,5 @@ void	o_options_print(t_printf *pf)
 			pf->count--;
 		}
 	}
+	free(str);
 }

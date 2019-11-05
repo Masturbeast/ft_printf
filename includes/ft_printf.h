@@ -46,17 +46,16 @@
 
 typedef struct  s_printf
 {
-	char	*fmt;
-	int		opt_size;
-	int 	width;
-	int		prec;
-	char	conv;
-	char	res[300];
-	va_list args;
-	int		ilenght;
-	int		index;
-	int		count;
-	int		dot;
+	char			*fmt;
+	int				opt_size;
+	int 			width;
+	int				prec;
+	char			conv;
+	va_list 		args;
+	char			res[300];
+	int				ilenght;
+	int				count;
+	int				dot;
 }               t_printf;
 /*
     flags (declared as variables) included in format struct:
@@ -87,7 +86,8 @@ char	get_conv(char *str, char c);
 
 /*  Utils functions */
 
-size_t			ft_int_length(uintmax_t n);
+int				ft_int_length(intmax_t n);
+int				ft_uint_length(uintmax_t n);
 size_t			ft_strlen(const char *str);
 long long int	int_cat(long long int x, long long int y);
 long long int	ft_power(long long int x, long long int power);
@@ -102,7 +102,8 @@ void			ft_bzero(void *s, size_t n);
 char			*ft_itoa(int n);
 void			*ft_memset(void *s, int c, size_t n);
 void			ft_strclr(char *s);
-void			ft_putnbr(uintmax_t n);
+void			ft_uputnbr(uintmax_t n);
+void			ft_putnbr(intmax_t n);
 char			*ft_strcpy(char *dest, const char *src);
 char			*ft_itoa_base(uintmax_t value, int base);
 char			*ft_itoa_base_cap(uintmax_t value, int base);
@@ -125,7 +126,8 @@ void	p_print(t_printf *pf);
 void    p_print2(unsigned long ptr);
 void	percent_print(t_printf *pf);
 void    neg_int_print(t_printf *pf, int twidth, intmax_t print);
-void	pos_int_print(t_printf *pf, int twidth, uintmax_t print);
+void	pos_int_print(t_printf *pf, int twidth, intmax_t print);
+void	pos_uint_print(t_printf *pf, int twidth, uintmax_t print);
 void    pos_float_print(t_printf *pf, int twidth, char *res);
 void	ft_ftoa(t_printf *pf, long double n);
 //char	*neg_fround(t_printf *pf, long long int x, long double y);
